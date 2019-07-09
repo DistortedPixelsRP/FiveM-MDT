@@ -70,7 +70,7 @@ This section is divided into 3 parts:
 4. Follow the instructions inside the file
 
 ### Done
-You are almost done! Open up HeidiSQL and go to the server table. In the `ip` column enter your FiveM server's public IP. In the `port` column enter your FiveM server's port (default port is 30120). Next, start your FiveM server using start `server.bat`. Now when you open your MBT login page you will see when you click on the server selector that one server is server online.
+You are almost done! Open up HeidiSQL and go to the server table. In the `ip` column enter your FiveM server's public IP. In the `port` column enter your FiveM server's port (default port is 30120). Next, start your FiveM server using `start server.bat`. Now when you open your MBT login page you will see when you click on the server selector that one server is server online.
 
 To become admin and use the admin panel (example.com/mdt/admin) open HeidiSQL and select the users table. In the row with your account set the admin column to any number greater than 0. 
 
