@@ -4,6 +4,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo $defaultURL;?>/modal.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="<?php echo $defaultURL;?>/utilities/console.js"></script>
 <div id="top">
     
     <div class="server"><?php echo $topTitle;?> - Server <?php echo $_SESSION['user_server'];?></div>

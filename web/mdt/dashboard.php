@@ -26,6 +26,7 @@ if ($result->num_rows > 0) {
         <title>Dashboard</title>
         <link rel="stylesheet" type="text/css" href="style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="<?php echo $defaultURL;?>/utilities/console.js"></script>
     </head>
     <body>
     <center><h1>Please select a Department</h1></center>

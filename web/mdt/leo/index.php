@@ -9,6 +9,8 @@ if (empty($_SESSION['user_loggedIn'])) {
 }
 include('../settings.php');
 ?>
+<html>
+<body bgcolor="#fff">
 <div style="display: none;"><?php include "../utilities/api.php"; ?></div>
 <title>Law Enforcement</title>
 <link rel="stylesheet" type="text/css" href="<?php echo $defaultURL;?>/modal.css">
@@ -1122,7 +1124,7 @@ function plateReport() {
 function plateReportDetailed(id) {
     var type = $("#plateSearch #plateReportSelect option:selected" ).val();
      if ($('#' + id).nextUntil('#plateReportTable tr.header').length === 0) {
-     console.log('yo');
+     console.log(id);
     $.post("<?php echo $defaultURL; ?>/utilities/api.php",
     {
       function: 'plateReportDetailed',

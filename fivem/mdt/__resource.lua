@@ -16,7 +16,6 @@ files({
     'nui/index.html',
     'nui/script.js',
     'nui/style.css',
-	'nui/settings.js',
 	
 	--character
 	'nui/character/index.html',

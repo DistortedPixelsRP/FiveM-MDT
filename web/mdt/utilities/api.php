@@ -1,4 +1,5 @@
 <?php
+require 'q3query.class.php';
 include('../settings.php');
 session_start();
 date_default_timezone_set('America/Los_Angeles');
@@ -761,7 +762,7 @@ if ($_POST['function'] == 'nameReportDetailed') {
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
 
-        echo "<tr><td colspan='2'>Driver: " . $row['first'] . " " . $row['last'] . "</td></tr><tr><td colspan='2'>Location: " . $row['location'] . "</td></tr><tr colspan='2'><td colspan='2'>Infraction(s): " . substr(str_replace('","', ", ", $row['infraction']), 2, -2) . "</td></tr><tr><td colspan='2'>Fine: $" . $row['fine'] . "</td></tr>";
+        echo "<tr><td colspan='2'>Person: " . $row['first'] . " " . $row['last'] . "</td></tr><tr><td colspan='2'>Location: " . $row['location'] . "</td></tr><tr colspan='2'><td colspan='2'>Infraction(s): " . substr(str_replace('","', ", ", $row['infraction']), 2, -2) . "</td></tr><tr><td colspan='2'>Fine: $" . $row['fine'] . "</td></tr>";
         if ($type === "Arrests") {echo "<tr><td colspan='2'>Jail Time: " . $row['jail'] . " Seconds </td></tr>";}
         }
     }
@@ -991,4 +992,115 @@ if ($_POST['function'] == 'doesSteamExist') {
         echo $row['user_id'];
         }
     }
+}
+
+if ($_POST['function'] == 'getServers') {
+    $query = "SELECT id,ip,port FROM server";
+    
+    $result = $conn->query($query);
+
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            echo "<div style='display:none;'>";
+            $content = json_decode(file_get_contents("http://" . $row['ip'] . ":" . $row['port'] . "/info.json"), true);
+            echo "</div>";
+            echo "<div class='serverStatusBox'>";
+            echo "<div class='serverStatusTitle'>Server " . $row['id'] . "</div>";
+            echo "<div class='serverStatusStatus' style='color: "; if ($content) {echo "green";} else {echo "red";} echo ";'>"; if (!$content) {echo "Offline</div></div>"; } elseif (!$content['vars']['Uptime']) {echo "Starting...</div></div>";} else {echo "Online</div>";
+            $gta5_players = json_decode(file_get_contents("http://" . $row['ip'] . ":" . $row['port'] . "/players.json"), true);
+            echo "<div class='serverStatusInfo'>" . count($gta5_players) . "/" . $content['vars']['sv_maxClients'] . " Players</div>";
+            echo "<div class='serverStatusInfo'>Uptime " . $content['vars']['Uptime'] . "</div>";
+            echo "<button onclick='selectServer(" . $row['id'] . ");'>View</button>";
+            echo "</div>";}
+    }
+}
+}
+
+function getIPFromID($id,$conn) {
+    
+    $query = "SELECT ip,port FROM server WHERE id=$id";
+    
+    $result = $conn->query($query);
+
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            $ip = $row['ip'];
+            $port = $row['port'];
+            return array("ip"=>"$ip","port"=>"$port");
+        }
+    }
+}
+
+if ($_POST['function'] == 'getServerPlayerTable') {
+    $row = getIPFromID($_POST['id'],$conn);
+    $sid = $_POST['id'];
+    $json = json_decode(file_get_contents("http://" . $row['ip'] . ":" . $row['port'] . "/players.json"), true);
+    $n = -1;
+    echo "<tr><th>Id</th><th>Name</th><th>Options</th>";
+    foreach($json as $a) {
+        $n = $n+1;
+        echo "<tr><td>" . $json[$n]['id'] . "</td><td>" . $json[$n]['name'] . "</td><td><a onclick='kickConfirm($sid, " . $json[$n]['id'] . ")'>Kick</a><a onclick='banConfirm($sid, " . $json[$n]['id'] . ")'>Ban</a></td></tr>";
+    }
+}
+
+if ($_POST['function'] == 'getServerInfo') {
+    $row = getIPFromID($_POST['id'],$conn);
+    $content = json_decode(file_get_contents("http://" . $row['ip'] . ":" . $row['port'] . "/info.json"), true);
+    $gta5_players = json_decode(file_get_contents("http://" . $row['ip'] . ":" . $row['port'] . "/players.json"), true);
+    echo json_encode(array($content['vars']['Uptime'],count($gta5_players) . "/" . $content['vars']['sv_maxClients']));
+}
+
+if ($_POST['function'] == 'rcon') {
+    $fConn = getIPFromID($_POST['server'],$conn);
+    $rcon = new q3query($fConn['ip'], $fConn['port'], $success);
+    $rcon->setRconpassword($rconPW);
+    $rcon->rcon($_POST['command']); 
+    //unset($rcon);
+}
+
+if ($_POST['function'] == 'genLogin') {
+    $str = rand();
+    $result = md5($str);
+    echo $result;  
+    
+    $query = "INSERT INTO users (code) VALUES ('$result')";
+    mysqli_query($conn, $query);
+}
+
+if ($_POST['function'] == 'removeLogin') {
+    $query = "DELETE FROM users where code<>'(NULL)'";
+    mysqli_query($conn, $query);
+    echo mysqli_affected_rows($conn) . " login codes deleted.";
+}
+
+if ($_POST['function'] == 'getUsersTable') {
+    $query = "SELECT name,email,suspend,user_id,admin FROM users";
+
+    $result = $conn->query($query);
+    echo "<tr><th>Name</th><th>Options</th>";
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr><td ";
+            if ($row['admin'] > 0) {
+                echo "style='color:red;'";
+            }
+            echo ">" . $row['name'] ."</td><td>";
+            if ($row['suspend'] == 1) {
+                echo "<a onclick='userSuspend(" . $row['user_id'] . ",0)'>Unsuspend</a>";
+            } else {
+                echo "<a onclick='userSuspendConfirm(" . $row['user_id'] . ")'>Suspend</a>";
+            }
+            echo "<a href='mailto: " . $row['email'] . "' target='_blank'>Email</a></td>";
+        }
+    }
+}
+
+if ($_POST['function'] == 'userSuspend') {
+    
+    $query = "UPDATE users SET suspend='" . $_POST['suspend'] ."' WHERE user_id='" . $_POST['id'] ."'";
+
+    mysqli_query($conn, $query);
 }

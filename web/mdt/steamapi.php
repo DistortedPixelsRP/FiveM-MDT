@@ -1,8 +1,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <?php
-
+include('settings.php');
 function steamAvatar($SteamID) {
-        $SteamAPI_KEY = "5983858A0DEB07846F46D2D2386E89BA";
         //$SteamID = "76561198164179083";
 	
 	$Name = "Player Name";

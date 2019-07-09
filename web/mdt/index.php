@@ -6,6 +6,7 @@ session_start();
 <link rel="stylesheet" type="text/css" href="style.css">
 <link rel="stylesheet" type="text/css" href="modal.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="<?php echo $defaultURL;?>/utilities/console.js"></script>
 <title>Login</title>
 </head>
 <body>
@@ -33,24 +34,17 @@ session_start();
         <select id="server" name="server">
             <option hidden>Server</option>
             <?php
-        // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
+   $query = "SELECT id,ip,port FROM server";
+    
+    $result = $conn->query($query);
 
-$sql = "SELECT * FROM server WHERE status='online'";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        echo "<option value='" . $row['id'] . "'>" . $row["id"] . "</option>";
-    }
-} else {
-    echo "<option>No Results</option>" . $row['id'];
-}
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            $content = json_decode(file_get_contents("http://" . $row['ip'] . ":" . $row['port'] . "/info.json"), true);
+            if ($content) {echo "<option value='" . $row['id'] . "'>" . $row["id"] . "</option>";}
+        }
+        }
 $conn->close();
             ?>
         </select>

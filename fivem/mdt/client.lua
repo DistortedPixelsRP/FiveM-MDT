@@ -3,6 +3,7 @@ local characterID = nil
 local idholder = nil
 local holdingID = nil
 
+--color names for vehicle registration
 local colorNames = {
     ['0'] = "Metallic Black",
     ['1'] = "Metallic Graphite Black",
@@ -164,6 +165,8 @@ local colorNames = {
     ['157'] = "Epsilon Blue",
 }
 
+--Debug commands
+--[[
 RegisterCommand('change', function(source, args)
         GuiChange(args[1])
 end, false)
@@ -172,36 +175,40 @@ RegisterCommand('server', function(source, args)
         TriggerServerEvent(args[1])
 end, false)
 
+RegisterCommand('off', function(source, args)
+        EnableGui(false)
+end, false)
+]]--
 
-AddEventHandler("playerConnecting", function()
-TriggerServerEvent('showCharactersServer')
-end)
-
+--opens character selection
 RegisterNetEvent("showCharacters")
 AddEventHandler("showCharacters", function(c)
 characters = c
 GuiChange('character')
-print(characters)
+--print(characters)
     SendNUIMessage({
         type = "showCharacters",
         characters = characters
     })
 end)
 
+--opens character selection to change character
 RegisterCommand('changeCharacter', function(source, args)
         TriggerServerEvent('showCharactersServer')
 end, false)
 
+--reloads character selection
 RegisterNUICallback(
     "reload",
     function(data)
         if data.reload then
-            print("reload")
+            --print("reload")
 			TriggerServerEvent('showCharactersServer')
         end
     end
 )
 
+--sets the character 
 RegisterNUICallback(
     "setCharacter",
     function(data)
@@ -209,14 +216,14 @@ RegisterNUICallback(
 		characterID = data.id
 		TriggerServerEvent('setCharacter', characterName, characterID)
 		TriggerEvent('chatMessage', "^*^3SYSTEM", { 128, 128, 128 }, "^rYou are now " .. characterName)
-		print(characterName)
-		print(characterID)
+		--print(characterName)
+		--print(characterID)
 		EnableGui(false)
     end
 )
 
 
-
+--register vehicle in db command
 RegisterCommand('register', function(source, args)
 if IsPedInAnyVehicle(PlayerPedId(), false) then
 local vehicleModel = GetLabelText(GetDisplayNameFromVehicleModel(GetEntityModel(GetVehiclePedIsIn(PlayerPedId()))))
@@ -236,6 +243,7 @@ TriggerEvent('chatMessage', "^*^3DMV", { 128, 128, 128 }, "^rYou are not in a ve
 end
 end)
 
+--command to give someone else your id
 RegisterCommand('giveID', function(source, args)
 	if characterName == nil then
 	TriggerEvent('chatMessage', "^*^1ERROR", { 128, 128, 128 }, "^rPlease select a character using '/changeCharacter'")
@@ -254,7 +262,7 @@ RegisterCommand('giveID', function(source, args)
 	end
 end, false)
 
-
+--sets if the ID icon in the corner should be showing if your holding your id or not
 function setID(have)
 SendNUIMessage({
 type = 'setID',
@@ -262,17 +270,20 @@ have = have
 })
 end
 
+--command to reset id if the system glitches or you die or something idk
 RegisterCommand('resetID', function(source, args)
 TriggerEvent('chatMessage', "^*^3SYSTEM", { 128, 128, 128 }, "^rID returned!")
 idholder = nil
 setID(true)
 end, false)
 
+--/me command trigger
 RegisterCommand('me', function(source, args, raw)
 msg = string.sub(raw, 3)
 TriggerServerEvent('me', msg, characterName)
 end)
 
+--sends everyone in the radius the /me message
 RegisterNetEvent('me')
 AddEventHandler("me", function(id, message, name)
 print(message)
@@ -281,6 +292,7 @@ TriggerEvent('chatMessage', "^*^7" .. name, {255, 0, 0}, "^r" .. message)
 end
 end)
 
+--command that allows you to hand back someones id without them having to do /resetID
 RegisterCommand('returnID', function(source, args)
 if holdingID ~= nil then
 TriggerServerEvent('returnID', characterName, holdingID)
@@ -292,6 +304,7 @@ TriggerEvent('chatMessage', "^*^3SYSTEM", { 128, 128, 128 }, "^rYou are not hold
 end
 end, false)
 
+--more return id stuff
 RegisterNetEvent('returnID')
 AddEventHandler("returnID", function(name)
 TriggerEvent('chatMessage', "^*^3" .. name, { 128, 128, 128 }, "^rHands back ID")
@@ -299,6 +312,7 @@ idholder = nil
 setID(true)
 end)
 
+--takes the person who handed the id to you info and shows it on your screen
 RegisterNetEvent('showID')
 AddEventHandler("showID", function(last, first, dob, gender, id)
 	holdingID = id
@@ -314,6 +328,7 @@ AddEventHandler("showID", function(last, first, dob, gender, id)
     })
 end)
 
+--get the ped closest to you. used for handing id
 function GetPedInFront()
 	local player = PlayerId()
 	local plyPed = GetPlayerPed(player)
@@ -324,6 +339,7 @@ function GetPedInFront()
 	return ped
 end
 
+--gets everyone in the servers ped, compares it with the one provided, then returns the one that matches
 function GetPlayerFromPed(ped)
 	for a = 0, 64 do
 		if GetPlayerPed(a) == ped then
@@ -333,6 +349,7 @@ function GetPlayerFromPed(ped)
 	return -1
 end
 
+--sends character name back to server
 RegisterNetEvent('getName')
 AddEventHandler("getName", function(msg, event)
 if characterName == nil then
@@ -342,10 +359,7 @@ TriggerServerEvent(event, characterName, msg)
 end
 end)
 
-RegisterCommand('off', function(source, args)
-        EnableGui(false)
-end, false)
-
+--changes the webpage displayed on your screen ex character selection screen
 function GuiChange(pageName)
 	EnableGui(true)
     SendNUIMessage({
@@ -354,14 +368,17 @@ function GuiChange(pageName)
     })
 end
 
+--link command (more in server)
 RegisterCommand('link', function(source, args)
 		TriggerServerEvent('linkServer', randomNumber())
 end, false)
 
+--unlink command (more in server)
 RegisterCommand('unlink', function(source, args)
 		TriggerServerEvent('unlinkServer')
 end, false)
 
+--generates a random 4 digit number. used for linking fivem and mdt account
 function randomNumber()
 math.randomseed(GetClockMinutes())
 number = ""
@@ -372,6 +389,7 @@ TriggerEvent('chatMessage', '^3Your code is: ^7^*' .. number, {255, 255, 255})
 return number
 end
 
+--turns on and off webpage on screen. ex character selection screen
 function EnableGui(enable)
     SetNuiFocus(enable, enable)
     guiEnabled = enable
@@ -383,17 +401,14 @@ function EnableGui(enable)
 end
 EnableGui(false)
 
+--turns on and off webpage on screen. ex character selection screen
 RegisterNUICallback("close", function(data, cb)
 	EnableGui(false)
 	GuiDefault()
     cb('ok')
 end)
 
-RegisterCommand('testID', function(source, args)
-SendNUIMessage({type = 'test'})
-print('um')
-end, false)
-
+--sets webpage back to default
 function GuiDefault()
 SendNUIMessage({default = true})
 end

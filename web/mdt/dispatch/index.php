@@ -12,6 +12,8 @@ if (empty($_SESSION['user_loggedIn'])) {
 }
 include('../settings.php');
 ?>
+<html>
+<body bgcolor="#fff">
 <div style="display: none;"><?php include "../utilities/api.php"; ?></div>
 <title>Dispatch</title>
 <link rel="stylesheet" type="text/css" href="<?php echo $defaultURL;?>/modal.css">

@@ -7,6 +7,8 @@ if (empty($_SESSION['user_loggedIn'])) {
     die("You must login first");
 }
 ?>
+<html>
+<body bgcolor="#fff">
 <link rel="stylesheet" type="text/css" href="style.css">
 <title>Civilian</title>
 
