@@ -29,9 +29,9 @@ I have decided that the MDT is ready to be released! Please follow the instructi
 
 ## How To install
 This section is divided into 3 parts:
-- MySQL
-- FiveM
-- Website
+- [MySQL](https://github.com/BennyFaelz/FiveM-MDT/blob/master/README.md#mysql)
+- [FiveM](https://github.com/BennyFaelz/FiveM-MDT/blob/master/README.md#fivem)
+- [Website](https://github.com/BennyFaelz/FiveM-MDT/blob/master/README.md#website)
 
 ### MySQL
 1. Open a program like [HeidiSQL](https://www.heidisql.com/) and login to your MySQL server
