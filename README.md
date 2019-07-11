@@ -21,6 +21,12 @@ I have decided that the MDT is ready to be released! Please follow the instructi
 - Easy setup
 - Optional require account creation code (for private communities)
 
+### Upcoming Features
+- More Essentialmode compatibility
+- Utilization of ES and ESX
+- Better plate, name and citation search UI
+- More admin features
+
 ## Requirements
 - MySQL server
 - Web server
@@ -73,6 +79,22 @@ This section is divided into 3 parts:
 You are almost done! Open up HeidiSQL and go to the server table. In the `ip` column enter your FiveM server's public IP. In the `port` column enter your FiveM server's port (default port is 30120). Next, start your FiveM server using `start server.bat`. Now when you open your MBT login page you will see when you click on the server selector that one server is server online.
 
 To become admin and use the admin panel (example.com/mdt/admin) open HeidiSQL and select the users table. In the row with your account set the admin column to any number greater than 0. 
+
+### FiveM Commands
+- `/link` used to link your FiveM and MDT account. When logging in for the first time it will ask to link to your FiveM
+- `/unlink` used to unlink your FiveM from your MDT account
+- `/giveID` hands your ID to the nearest player
+- `/returnID` if you are holding someone elses ID, it gives it back to them
+- `/resetID` forcefully gives you your ID back
+- `/register` registers the vehicle you are in to your current character
+- `/me <message>` sends your message to only the players in the radius
+- `/changeCharacter` opens up the character selection screen
+- `setRestartTime <hh> <mm>` used in the server console to set the restart time of the server
+
+
+### Known Bugs/Issues
+- SQL file not importing properly. Fix: Use HeidiSQL to import OR change utf8mb4_0900_ai_ci to utf8mb4_bin inside the SQL file
+- When running multiple servers on one machine, when one of them restarts they all restart. Fix: In the next release.
 
 ### Suggestions and Support
 Join the discord
