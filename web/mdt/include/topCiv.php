@@ -29,7 +29,7 @@
         <h1>Please Select an Area of Patrol</h1>
         <select id='aopSelect'>
                         <?php
-$query = "SELECT name FROM aop_names";
+$query = "SELECT name FROM mdt_aop_names";
 $result = $conn->query($query);
 
 if ($result->num_rows > 0) {

@@ -5,14 +5,14 @@ AddEventHandler("linkServer", function(code)
   local steamid = GetPlayerIdentifier(source,0)
   local realSteamID = tostring(tonumber(string.sub(steamid, 7), 16))
   
-MySQL.Async.fetchAll("SELECT name FROM users WHERE steam=@steam", {['@steam'] = realSteamID}, function(users)
+MySQL.Async.fetchAll("SELECT name FROM mdt_users WHERE steam=@steam", {['@steam'] = realSteamID}, function(users)
 	if #users > 0 then
 	--print('exist')
 TriggerClientEvent('chatMessage', source, "^1^*ERROR", { 128, 128, 128 }, "^r Your account is already linked with ^*^_" .. users[1].name .. "^r. Use '/unlink' to unlink your account!")
 	else
 --print('not exist')
-MySQL.Sync.execute("INSERT INTO players (id, steam, name) VALUES (@ClientID, @steamid, @ClientName)", {['@ClientID'] = source, ['@steamid'] = realSteamID, ['@ClientName'] = tostring(GetPlayerName(source))})
-MySQL.Sync.execute("UPDATE players SET code=@code WHERE id=@ClientID", {['@ClientID'] = source, ['@code'] = code})
+MySQL.Sync.execute("INSERT INTO mdt_players (id, steam, name) VALUES (@ClientID, @steamid, @ClientName)", {['@ClientID'] = source, ['@steamid'] = realSteamID, ['@ClientName'] = tostring(GetPlayerName(source))})
+MySQL.Sync.execute("UPDATE mdt_players SET code=@code WHERE id=@ClientID", {['@ClientID'] = source, ['@code'] = code})
 end
 end)
 end)
@@ -23,7 +23,7 @@ AddEventHandler("unlinkServer", function()
 local source = source
 local steamid = GetPlayerIdentifier(source,0)
 local realSteamID = tostring(tonumber(string.sub(steamid, 7), 16))
-MySQL.Sync.execute("UPDATE users SET steam='0' WHERE steam=@steam", {['@steam'] = realSteamID})
+MySQL.Sync.execute("UPDATE mdt_users SET steam='0' WHERE steam=@steam", {['@steam'] = realSteamID})
 
 TriggerClientEvent('chatMessage', source, "^2^*SUCCESS", { 128, 128, 128 }, "^r Account successfully unlinked!")
 end)
@@ -36,11 +36,11 @@ AddEventHandler("showCharactersServer", function()
 local src = source
 local steamid = GetPlayerIdentifier(source,0)
 local realSteamID = tostring(tonumber(string.sub(steamid, 7), 16))
-MySQL.Async.fetchAll("SELECT user_id FROM users WHERE steam=@steam", {['@steam'] = realSteamID}, function(users)
+MySQL.Async.fetchAll("SELECT user_id FROM mdt_users WHERE steam=@steam", {['@steam'] = realSteamID}, function(users)
 if #users == 0 then
 TriggerClientEvent('chatMessage', src, "^1^*ERROR", { 128, 128, 128 }, "^r Your account has not been linked yet! Please login to the online MDT and follow the instructions.")
 else
-MySQL.Async.fetchAll("SELECT * FROM characters WHERE ownerID=@ownerID", {['@ownerID'] = users[1].user_id}, function(characters)
+MySQL.Async.fetchAll("SELECT * FROM mdt_characters WHERE ownerID=@ownerID", {['@ownerID'] = users[1].user_id}, function(characters)
 TriggerClientEvent('showCharacters', src, characters)
 end)
 end
@@ -51,13 +51,13 @@ end)
 RegisterNetEvent('registerVehicle')
 AddEventHandler("registerVehicle", function(vehicleModel, vehiclePlate, vehicleColor, id)
 local source = source
-MySQL.Async.fetchAll("SELECT * FROM characters WHERE id=@id", {['@id'] = id}, function(users)
+MySQL.Async.fetchAll("SELECT * FROM mdt_characters WHERE id=@id", {['@id'] = id}, function(users)
 if users[1].lic == 'None' then
 TriggerClientEvent('chatMessage', source, "^3^*DMV", { 128, 128, 128 }, "^r You do not have a drivers license yet! We are creating one for you now. Please type ^*'/register'^r again to continue registering your vehicle.")
-MySQL.Sync.execute("UPDATE characters SET lic='Valid' WHERE id=@id", {['@id'] = id})
+MySQL.Sync.execute("UPDATE mdt_characters SET lic='Valid' WHERE id=@id", {['@id'] = id})
 else
 TriggerClientEvent('chatMessage', source, "^3^*DMV", { 128, 128, 128 }, "^r Your ^*" .. vehicleColor .. " " .. vehicleModel .. "^r with the plate ^*" .. vehiclePlate .. "^r has been successfully registered to ^*" .. users[1].first .. " " .. users[1].last .. "^r.")
-	MySQL.Sync.execute("INSERT INTO vehicles (ownerID, characterID, model, plate, description, reg, insurance, flags) VALUES (@ownerID, @characterID, @model, @plate, @description, 'Valid', 'Valid', 'None')", {['@ownerID'] = users[1].ownerID, ['@characterID'] = id, ['@model'] = vehicleModel, ['@plate'] = vehiclePlate, ['@description'] = vehicleColor})
+	MySQL.Sync.execute("INSERT INTO mdt_vehicles (ownerID, characterID, model, plate, description, reg, insurance, flags) VALUES (@ownerID, @characterID, @model, @plate, @description, 'Valid', 'Valid', 'None')", {['@ownerID'] = users[1].ownerID, ['@characterID'] = id, ['@model'] = vehicleModel, ['@plate'] = vehiclePlate, ['@description'] = vehicleColor})
 end
 end)
 end)
@@ -80,7 +80,7 @@ end)
 RegisterNetEvent('showID')
 AddEventHandler("showID", function(giveID, characterID, userid)
 print(characterID .. " " .. giveID)
-MySQL.Async.fetchAll("SELECT * FROM characters WHERE id=@characterID", {['@characterID'] = characterID}, function(characters)
+MySQL.Async.fetchAll("SELECT * FROM mdt_characters WHERE id=@characterID", {['@characterID'] = characterID}, function(characters)
 
 TriggerClientEvent('showID', giveID, characters[1].last, characters[1].first, characters[1].dob, characters[1].gender, userid)
 end)
@@ -150,7 +150,7 @@ local reason = table.concat(args, ' ')
 local steamid = GetPlayerIdentifier(id,0)
 print("Banning user with id " .. id)
 DropPlayer(id, reason)
-MySQL.Sync.execute("INSERT INTO ban (steam, reason) VALUES (@steam, @reason)", {['@steam'] = steamid, ['@reason'] = reason})
+MySQL.Sync.execute("INSERT INTO mdt_ban (steam, reason) VALUES (@steam, @reason)", {['@steam'] = steamid, ['@reason'] = reason})
 end
 end)
 
@@ -177,7 +177,7 @@ AddEventHandler("playerConnecting", function(name, setReason, deferrals)
 deferrals.defer()
 deferrals.update("Checking...")
 local steamid = GetPlayerIdentifier(source,0)
-local ban = MySQL.Sync.fetchAll("SELECT steam,reason FROM ban WHERE steam=@steam", {['@steam'] = steamid})
+local ban = MySQL.Sync.fetchAll("SELECT steam,reason FROM mdt_ban WHERE steam=@steam", {['@steam'] = steamid})
 if steamid == nil then
 print("User must first login to Steam")
 setReason("Please login to Steam to play on this FiveM server!")

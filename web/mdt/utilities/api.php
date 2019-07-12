@@ -12,12 +12,12 @@ if ($_POST['function'] == 'setDepartment') {
     $_SESSION['divisonID'] = $_POST['divisonID'];
     $divisonID = $_POST['divisonID'];
     
-    $result = mysqli_query($conn, "SELECT * FROM departments WHERE id='$departmentID' LIMIT 1");
+    $result = mysqli_query($conn, "SELECT * FROM mdt_departments WHERE id='$departmentID' LIMIT 1");
     while($row = mysqli_fetch_assoc($result)) {
     $_SESSION['departmentName'] = $row['abbreviation'];
     }
     
-    $result = mysqli_query($conn, "SELECT * FROM divisions WHERE id='$divisonID' LIMIT 1");
+    $result = mysqli_query($conn, "SELECT * FROM mdt_divisions WHERE id='$divisonID' LIMIT 1");
     while($row = mysqli_fetch_assoc($result)) {
     $_SESSION['divisonName'] = $row['abbreviation'];
     }
@@ -31,7 +31,7 @@ if ($_POST['function'] == 'getAOP') {
     } else {
         
         $serverID = $_SESSION['user_server'];
-    $query = "SELECT aop FROM server WHERE id='$serverID'";
+    $query = "SELECT aop FROM mdt_server WHERE id='$serverID'";
 
     $result = $conn->query($query);
 
@@ -51,7 +51,7 @@ if ($_POST['function'] == 'submitAOP') {
     $serverID = $_SESSION['user_server'];
     $aop = $_POST['aop'];
     
-    $query = "UPDATE server SET aop='$aop' WHERE id='$serverID'";
+    $query = "UPDATE mdt_server SET aop='$aop' WHERE id='$serverID'";
 
     mysqli_query($conn, $query);
 } else {
@@ -62,7 +62,7 @@ if ($_POST['function'] == 'getCiv') {
     $civID = $_POST['civID'];
     unset($_SESSION['currentCiv']);
     $_SESSION['currentCiv'] = $civID;
-    $query = "SELECT first, last, dob, gender, address, lic, weapon FROM characters WHERE id='$civID'";
+    $query = "SELECT first, last, dob, gender, address, lic, weapon FROM mdt_characters WHERE id='$civID'";
     
     $result = $conn->query($query);
 
@@ -78,7 +78,7 @@ if ($_POST['function'] == 'getVeh') {
     $vehID = $_POST['vehID'];
     unset($_SESSION['currentVeh']);
     $_SESSION['currentVeh'] = $vehID;
-    $query = "SELECT model, plate, description, reg, insurance, flags, characterID FROM vehicles WHERE id='$vehID'";
+    $query = "SELECT model, plate, description, reg, insurance, flags, characterID FROM mdt_vehicles WHERE id='$vehID'";
     
     $result = $conn->query($query);
     
@@ -104,13 +104,13 @@ if (isset($_POST['submitCiv'])) {
     $weapon = $_POST['weapon'];
     
     if ($_POST['nameSelect'] == 'add') {
-    $query = "INSERT INTO characters (ownerID, first, last, dob, gender, address, lic, weapon) VALUES ('$ownerID', '$first', '$last', '$dob', '$gender', '$address', '$lic', '$weapon')";
+    $query = "INSERT INTO mdt_characters (ownerID, first, last, dob, gender, address, lic, weapon) VALUES ('$ownerID', '$first', '$last', '$dob', '$gender', '$address', '$lic', '$weapon')";
     
     mysqli_query($conn, $query);
     header("Location:$defaultURL/civ");  
 } else {
     
-    $query = "UPDATE characters SET first='$first', last='$last', dob='$dob', gender='$gender', address='$address', lic='$lic', weapon='$weapon' WHERE id='$id'";
+    $query = "UPDATE mdt_characters SET first='$first', last='$last', dob='$dob', gender='$gender', address='$address', lic='$lic', weapon='$weapon' WHERE id='$id'";
 
         mysqli_query($conn, $query);
         header("Location:$defaultURL/civ");
@@ -119,7 +119,7 @@ if (isset($_POST['submitCiv'])) {
 
 if (isset($_POST['deleteCiv'])) {
     $id = $_POST['nameSelect'];
-    $query = "DELETE FROM characters WHERE id='$id'";
+    $query = "DELETE FROM mdt_characters WHERE id='$id'";
     mysqli_query($conn, $query);
     unset($_SESSION['currentCiv']);
     header("Location:$defaultURL/civ");
@@ -137,14 +137,14 @@ if (isset($_POST['submitVeh'])) {
     $characterID = $_POST['owner'];
     
     if ($_POST['vehicleSelect'] == 'add') {
-    $query = "INSERT INTO vehicles (ownerID, characterID, model, plate, description, reg, insurance, flags) VALUES ('$ownerID', '$characterID', '$model', '$plate', '$description', '$reg', '$insurance', '$flags')";
+    $query = "INSERT INTO mdt_vehicles (ownerID, characterID, model, plate, description, reg, insurance, flags) VALUES ('$ownerID', '$characterID', '$model', '$plate', '$description', '$reg', '$insurance', '$flags')";
     
     mysqli_query($conn, $query);
     header("Location:$defaultURL/civ");
     
 } else{
     
-    $query = "UPDATE vehicles SET characterID='$characterID', model='$model', plate='$plate', description='$description', reg='$reg', insurance='$insurance', flags='$flags' WHERE id='$id'";
+    $query = "UPDATE mdt_vehicles SET characterID='$characterID', model='$model', plate='$plate', description='$description', reg='$reg', insurance='$insurance', flags='$flags' WHERE id='$id'";
 
         mysqli_query($conn, $query);
         header("Location:$defaultURL/civ");
@@ -153,7 +153,7 @@ if (isset($_POST['submitVeh'])) {
 
 if (isset($_POST['deleteVeh'])) {
     $id = $_POST['vehicleSelect'];
-    $query = "DELETE FROM vehicles WHERE id='$id'";
+    $query = "DELETE FROM mdt_vehicles WHERE id='$id'";
     mysqli_query($conn, $query);
     unset($_SESSION['currentVeh']);
     header("Location:$defaultURL/civ");
@@ -167,9 +167,9 @@ if (isset($_POST['submitIdentifier'])) {
     $serverID = $_SESSION['user_server'];
     $result = mysqli_query($conn, "SELECT * FROM active_users WHERE user_id='$user_id' LIMIT 1");
     if (mysqli_fetch_row($result)) {
-        $query = "UPDATE active_users SET identifier='$identifier', server='$serverID' WHERE user_id='$user_id'";
+        $query = "UPDATE mdt_active_users SET identifier='$identifier', server='$serverID' WHERE user_id='$user_id'";
     } else {
-        $query = "INSERT INTO active_users (user_id, identifier, server, department, divison) VALUES ('$user_id', '$identifier', '$serverID', '$department', '$divison')";
+        $query = "INSERT INTO mdt_active_users (user_id, identifier, server, department, divison) VALUES ('$user_id', '$identifier', '$serverID', '$department', '$divison')";
     }
     
     $_SESSION['user_identifier'] = $identifier;
@@ -184,19 +184,19 @@ if (isset($_POST['submitIdentifier'])) {
 if ($_POST['function'] == 'submitStatus') {     
     $user_id = $_SESSION['user_id'];
     $status = $_POST['status'];
-    $query = "UPDATE active_users SET status='$status' WHERE user_id='$user_id'";
+    $query = "UPDATE mdt_active_users SET status='$status' WHERE user_id='$user_id'";
     $_SESSION['status'] = $status;
     mysqli_query($conn, $query);
     echo $status;
     if ($status == "10-8") {
-        $query = "UPDATE active_users SET callID='0' WHERE user_id='$user_id'";
+        $query = "UPDATE mdt_active_users SET callID='0' WHERE user_id='$user_id'";
         mysqli_query($conn, $query);
     }
 }
 
 if ($_POST['function'] == 'getStatus') {
     $user_id = $_SESSION['user_id'];
-    $query = "SELECT * FROM active_users WHERE user_id='$user_id'";
+    $query = "SELECT * FROM mdt_active_users WHERE user_id='$user_id'";
 
     $result = $conn->query($query);
 
@@ -206,7 +206,7 @@ if ($_POST['function'] == 'getStatus') {
             echo $row['status'];
             $_SESSION['status'] = $row['status'];
             if ($row['status'] == "10-8") {
-                $query = "UPDATE active_users SET callID='0' WHERE user_id='$user_id'";
+                $query = "UPDATE mdt_active_users SET callID='0' WHERE user_id='$user_id'";
                 mysqli_query($conn, $query);
             }
         }
@@ -215,7 +215,7 @@ if ($_POST['function'] == 'getStatus') {
 
     if ($_POST['function'] == 'getCall') {
     $user_id = $_SESSION['user_id'];
-    $query = "SELECT * FROM active_users WHERE user_id='$user_id'";
+    $query = "SELECT * FROM mdt_active_users WHERE user_id='$user_id'";
 
     $result = $conn->query($query);
 
@@ -230,7 +230,7 @@ if ($_POST['function'] == 'getStatus') {
         }
     }
 
-    $query = "SELECT id, type, location, details FROM calls WHERE id='$callID'";
+    $query = "SELECT id, type, location, details FROM mdt_calls WHERE id='$callID'";
 
     $result = $conn->query($query);
 
@@ -251,7 +251,7 @@ if ($_POST['function'] == 'getStatus') {
 if ($_POST['function'] == 'searchName') {
     $first = $_POST['first'];
     $last = $_POST['last'];
-    $query = "SELECT ownerID, id, first, last, dob, gender, address, lic, weapon FROM characters WHERE first='$first' AND last='$last'";
+    $query = "SELECT ownerID, id, first, last, dob, gender, address, lic, weapon FROM mdt_characters WHERE first='$first' AND last='$last'";
     
     $result = $conn->query($query);
     global $response;
@@ -275,7 +275,7 @@ if ($_POST['function'] == 'searchName') {
 
 function ownerName($id) {
     include('../settings.php');
-    $query = "SELECT * FROM users WHERE user_id='$id'";
+    $query = "SELECT * FROM mdt_users WHERE user_id='$id'";
     $result = $conn->query($query);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
@@ -289,7 +289,7 @@ function ownerName($id) {
 
 if ($_POST['function'] == 'searchNameMultiple') {
     $id = $_POST['id'];
-    $query = "SELECT id, first, last, dob, gender, address, lic, weapon FROM characters WHERE id='$id'";
+    $query = "SELECT id, first, last, dob, gender, address, lic, weapon FROM mdt_characters WHERE id='$id'";
 
     $result = $conn->query($query);
 
@@ -302,7 +302,7 @@ if ($_POST['function'] == 'searchNameMultiple') {
     
 if ($_POST['function'] == 'getSearchedNameVehicles') {
     $id = $_POST['id'];
-    $query = "SELECT plate, model, description FROM vehicles WHERE characterID='$id'";
+    $query = "SELECT plate, model, description FROM mdt_vehicles WHERE characterID='$id'";
 
     $result = $conn->query($query);
 
@@ -317,7 +317,7 @@ if ($_POST['function'] == 'getSearchedNameVehicles') {
     
     if ($_POST['function'] == 'searchPlate') {
     $plate = $_POST['plate'];
-    $query = "SELECT ownerID, id, characterID, model, plate, description, reg, insurance, flags FROM vehicles WHERE plate='$plate'";
+    $query = "SELECT ownerID, id, characterID, model, plate, description, reg, insurance, flags FROM mdt_vehicles WHERE plate='$plate'";
 
     $result = $conn->query($query);
     global $response;
@@ -341,7 +341,7 @@ if ($_POST['function'] == 'getSearchedNameVehicles') {
 
 if ($_POST['function'] == 'searchPlateMultiple') {
     $id = $_POST['id'];
-    $query = "SELECT ownerID, id, characterID, model, plate, description, reg, insurance, flags FROM vehicles WHERE id='$id'";
+    $query = "SELECT ownerID, id, characterID, model, plate, description, reg, insurance, flags FROM mdt_vehicles WHERE id='$id'";
 
     $result = $conn->query($query);
 
@@ -354,7 +354,7 @@ if ($_POST['function'] == 'searchPlateMultiple') {
 
 function characterName($id) {
     include('../settings.php');
-    $query = "SELECT * FROM characters WHERE id='$id'";
+    $query = "SELECT * FROM mdt_characters WHERE id='$id'";
     $result = $conn->query($query);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
@@ -368,7 +368,7 @@ function characterName($id) {
 
 if ($_POST['function'] == 'getPenal') {
     $id = $_POST['id'];
-    $query = "SELECT * FROM penal_charges WHERE cat='$id'";
+    $query = "SELECT * FROM mdt_penal_charges WHERE cat='$id'";
     $result = $conn->query($query);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
@@ -380,7 +380,7 @@ if ($_POST['function'] == 'getPenal') {
 
 if ($_POST['function'] == 'getPenalCitations') {
     $id = $_POST['id'];
-    $query = "SELECT * FROM penal_charges WHERE cat='$id'";
+    $query = "SELECT * FROM mdt_penal_charges WHERE cat='$id'";
     $result = $conn->query($query);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
@@ -392,7 +392,7 @@ if ($_POST['function'] == 'getPenalCitations') {
 
 if ($_POST['function'] == 'getPenalFromId') {
     $id = $_POST['id'];
-    $query = "SELECT * FROM penal_charges WHERE id='$id' LIMIT 1";
+    $query = "SELECT * FROM mdt_penal_charges WHERE id='$id' LIMIT 1";
     $result = $conn->query($query);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
@@ -441,13 +441,13 @@ if ($_POST['function'] == 'submitCitation') {
     $location = $_POST['location'];
     $fine = $_POST['fine'];
 
-    $query = "INSERT INTO tickets (charaterId, first, last, plateId, plate, description, infraction, location, fine, date, officer) VALUES ('$characterId', '$first', '$last', '$plateId', '$plate', '$description', '$infraction', '$location', '$fine', '$date', '" . $_SESSION['user_identifier'] . " [" . $_SESSION['departmentName'] . "]')";
+    $query = "INSERT INTO mdt_tickets (charaterId, first, last, plateId, plate, description, infraction, location, fine, date, officer) VALUES ('$characterId', '$first', '$last', '$plateId', '$plate', '$description', '$infraction', '$location', '$fine', '$date', '" . $_SESSION['user_identifier'] . " [" . $_SESSION['departmentName'] . "]')";
     mysqli_query($conn, $query);
 }
 
 function doesCivExist($first, $last) {
     include('../settings.php');
-    $query = "SELECT * FROM characters WHERE first='$first' AND last='$last'";
+    $query = "SELECT * FROM mdt_characters WHERE first='$first' AND last='$last'";
     $result = $conn->query($query);
     if ($result->num_rows > 0) {
             return true;
@@ -459,7 +459,7 @@ function doesCivExist($first, $last) {
 if ($_POST['function'] == 'doesPlateExist') {
    $plate = $_POST['plate'];
    
-    $query = "SELECT * FROM vehicles WHERE plate='$plate'";
+    $query = "SELECT * FROM mdt_vehicles WHERE plate='$plate'";
     $result = $conn->query($query);
     global $response;
     if ($result->num_rows > 0) {
@@ -480,7 +480,7 @@ if ($_POST['function'] == 'doesPlateExist') {
 if ($_POST['function'] == 'searchNameCitation') {
     $first = $_POST['first'];
     $last = $_POST['last'];
-    $query = "SELECT ownerID, id, first, last, dob FROM characters WHERE first='$first' AND last='$last'";
+    $query = "SELECT ownerID, id, first, last, dob FROM mdt_characters WHERE first='$first' AND last='$last'";
     
     $result = $conn->query($query);
     global $response;
@@ -539,14 +539,14 @@ if ($_POST['function'] == 'submitWarning') {
     $infraction = json_encode($_POST['infraction']);
     $location = $_POST['location'];
 
-    $query = "INSERT INTO warnings (charaterId, first, last, plateId, plate, description, infraction, location, date, officer) VALUES ('$characterId', '$first', '$last', '$plateId', '$plate', '$description', '$infraction', '$location', '$date', '" . $_SESSION['user_identifier'] . " [" . $_SESSION['departmentName'] . "]')";
+    $query = "INSERT INTO mdt_warnings (charaterId, first, last, plateId, plate, description, infraction, location, date, officer) VALUES ('$characterId', '$first', '$last', '$plateId', '$plate', '$description', '$infraction', '$location', '$date', '" . $_SESSION['user_identifier'] . " [" . $_SESSION['departmentName'] . "]')";
     mysqli_query($conn, $query);
 }
 
 if ($_POST['function'] == 'doesPlateExistWarning') {
     $plate = $_POST['plate'];
 
-    $query = "SELECT * FROM vehicles WHERE plate='$plate'";
+    $query = "SELECT * FROM mdt_vehicles WHERE plate='$plate'";
     $result = $conn->query($query);
     global $response;
     if ($result->num_rows > 0) {
@@ -567,7 +567,7 @@ if ($_POST['function'] == 'doesPlateExistWarning') {
 if ($_POST['function'] == 'searchNameWarning') {
     $first = $_POST['first'];
     $last = $_POST['last'];
-    $query = "SELECT ownerID, id, first, last, dob FROM characters WHERE first='$first' AND last='$last'";
+    $query = "SELECT ownerID, id, first, last, dob FROM mdt_characters WHERE first='$first' AND last='$last'";
 
     $result = $conn->query($query);
     global $response;
@@ -590,7 +590,7 @@ if ($_POST['function'] == 'searchNameWarning') {
 
 if ($_POST['function'] == 'getPenalWarnings') {
     $id = $_POST['id'];
-    $query = "SELECT * FROM penal_charges WHERE cat='$id'";
+    $query = "SELECT * FROM mdt_penal_charges WHERE cat='$id'";
     $result = $conn->query($query);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
@@ -652,14 +652,14 @@ if ($_POST['function'] == 'submitArrest') {
     $fine = $_POST['fine'];
     $jail = $_POST['jail'];
 
-    $query = "INSERT INTO arrests (charaterId, first, last, plateId, plate, description, infraction, location, fine, jail, date, officer) VALUES ('$characterId', '$first', '$last', '$plateId', '$plate', '$description', '$infraction', '$location', '$fine', '$jail', '$date', '" . $_SESSION['user_identifier'] . " [" . $_SESSION['departmentName'] . "]')";
+    $query = "INSERT INTO mdt_arrests (charaterId, first, last, plateId, plate, description, infraction, location, fine, jail, date, officer) VALUES ('$characterId', '$first', '$last', '$plateId', '$plate', '$description', '$infraction', '$location', '$fine', '$jail', '$date', '" . $_SESSION['user_identifier'] . " [" . $_SESSION['departmentName'] . "]')";
     mysqli_query($conn, $query);
 }
     
 if ($_POST['function'] == 'doesPlateExistArrest') {
     $plate = $_POST['plate'];
 
-    $query = "SELECT * FROM vehicles WHERE plate='$plate'";
+    $query = "SELECT * FROM mdt_vehicles WHERE plate='$plate'";
     $result = $conn->query($query);
     global $response;
     if ($result->num_rows > 0) {
@@ -680,7 +680,7 @@ if ($_POST['function'] == 'doesPlateExistArrest') {
 if ($_POST['function'] == 'searchNameArrest') {
     $first = $_POST['first'];
     $last = $_POST['last'];
-    $query = "SELECT ownerID, id, first, last, dob FROM characters WHERE first='$first' AND last='$last'";
+    $query = "SELECT ownerID, id, first, last, dob FROM mdt_characters WHERE first='$first' AND last='$last'";
 
     $result = $conn->query($query);
     global $response;
@@ -703,7 +703,7 @@ if ($_POST['function'] == 'searchNameArrest') {
 
 if ($_POST['function'] == 'getPenalArrests') {
     $id = $_POST['id'];
-    $query = "SELECT * FROM penal_charges WHERE cat='$id'";
+    $query = "SELECT * FROM mdt_penal_charges WHERE cat='$id'";
     $result = $conn->query($query);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
@@ -716,7 +716,7 @@ if ($_POST['function'] == 'getPenalArrests') {
 if ($_POST['function'] == 'plateReport') {
     $type = $_POST['type'];
     $id = $_POST['plate'];
-    $query = "SELECT * FROM $type WHERE plateId='$id'";
+    $query = "SELECT * FROM mdt_$type WHERE plateId='$id'";
     $result = $conn->query($query);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
@@ -729,7 +729,7 @@ if ($_POST['function'] == 'plateReport') {
 if ($_POST['function'] == 'plateReportDetailed') {
     $type = $_POST['type'];
     $id = $_POST['id'];
-    $query = "SELECT * FROM $type WHERE id='$id'";
+    $query = "SELECT * FROM mdt_$type WHERE id='$id'";
     $result = $conn->query($query);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
@@ -744,7 +744,7 @@ if ($_POST['function'] == 'plateReportDetailed') {
 if ($_POST['function'] == 'nameReport') {
     $type = $_POST['type'];
     $id = $_POST['name'];
-    $query = "SELECT * FROM $type WHERE charaterId='$id'";
+    $query = "SELECT * FROM mdt_$type WHERE charaterId='$id'";
     $result = $conn->query($query);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
@@ -757,7 +757,7 @@ if ($_POST['function'] == 'nameReport') {
 if ($_POST['function'] == 'nameReportDetailed') {
     $type = $_POST['type'];
     $id = $_POST['id'];
-    $query = "SELECT * FROM $type WHERE id='$id'";
+    $query = "SELECT * FROM mdt_$type WHERE id='$id'";
     $result = $conn->query($query);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
@@ -795,7 +795,7 @@ if ($_POST['function'] == 'createCall') {
     $location = $_POST['location'];
     $postal = $_POST['postal'];
 
-    $query = "INSERT INTO calls (type, location, details) VALUES ('$type', '$location / Nearest Postal $postal', '$description')";
+    $query = "INSERT INTO mdt_calls (type, location, details) VALUES ('$type', '$location / Nearest Postal $postal', '$description')";
     mysqli_query($conn, $query);
 }
 
@@ -808,7 +808,7 @@ if ($_POST['function'] == 'getCallDispatch') {
             </tr>
         ";
     
-    $query = "SELECT * FROM calls";
+    $query = "SELECT * FROM mdt_calls";
 
     $result = $conn->query($query);
 
@@ -829,17 +829,17 @@ if ($_POST['function'] == 'getCallDispatch') {
 
 if ($_POST['function'] == 'clearCall') {
     $id = $_POST['id'];
-    $query = "DELETE FROM calls WHERE id='$id'";
+    $query = "DELETE FROM mdt_calls WHERE id='$id'";
     mysqli_query($conn, $query);
     
-    $query = "UPDATE active_users SET callID='0', status='10-8' WHERE callID='$id'";
+    $query = "UPDATE mdt_active_users SET callID='0', status='10-8' WHERE callID='$id'";
     mysqli_query($conn, $query);
 }
 
 
 if ($_POST['function'] == 'editCallGet') {
 $id = $_POST['id'];
-$query = "SELECT * FROM calls WHERE id='$id'";
+$query = "SELECT * FROM mdt_calls WHERE id='$id'";
 
 $result = $conn->query($query);
 if ($result->num_rows > 0) {
@@ -855,7 +855,7 @@ if ($_POST['function'] == 'editCall') {
     $location = $_POST['location'];
     $description = $_POST['description'];
     
-    $query = "UPDATE calls SET type='$type', location='$location', details='$description' WHERE id='$id'";
+    $query = "UPDATE mdt_calls SET type='$type', location='$location', details='$description' WHERE id='$id'";
     mysqli_query($conn, $query);
 }
 
@@ -869,7 +869,7 @@ if ($_POST['function'] == 'getUnits') {
             </tr>
         ";
 
-    $query = "SELECT * FROM active_users WHERE NOT department='Dispatch' AND NOT logout='1'";
+    $query = "SELECT * FROM mdt_active_users WHERE NOT department='Dispatch' AND NOT logout='1'";
 
     $result = $conn->query($query);
 
@@ -908,7 +908,7 @@ if ($_POST['function'] == 'getUnits') {
 
 function getCallNames() {
     include('../settings.php');
-    $query = "SELECT * FROM calls";
+    $query = "SELECT * FROM mdt_calls";
 
     $result = $conn->query($query);
     global $response;
@@ -925,11 +925,11 @@ if ($_POST['function'] == 'changeStatus') {
     $id = $_POST['id'];
     $status = $_POST['status'];
     
-    $query = "UPDATE active_users SET status='$status' WHERE user_id='$id'";
+    $query = "UPDATE mdt_active_users SET status='$status' WHERE user_id='$id'";
     mysqli_query($conn, $query);
     
     if ($status == "10-8") {
-        $query = "UPDATE active_users SET callID='0' WHERE user_id='$id'";
+        $query = "UPDATE mdt_active_users SET callID='0' WHERE user_id='$id'";
         mysqli_query($conn, $query);
         echo 'yo mama';
     }
@@ -939,14 +939,14 @@ if ($_POST['function'] == 'changeCall') {
     $id = $_POST['id'];
     $call = $_POST['call'];
 
-    $query = "UPDATE active_users SET callID='$call', status='10-6' WHERE user_id='$id'";
+    $query = "UPDATE mdt_active_users SET callID='$call', status='10-6' WHERE user_id='$id'";
     mysqli_query($conn, $query);
 }
 
 if ($_POST['function'] == 'logoutUser') {
     $id = $_POST['id'];
 
-    $query = "UPDATE active_users SET logout='1' WHERE user_id='$id'";
+    $query = "UPDATE mdt_active_users SET logout='1' WHERE user_id='$id'";
     mysqli_query($conn, $query);
 }
 
@@ -954,18 +954,18 @@ if ($_POST['function'] == 'signal') {
     $server = $_SESSION['user_server'];
     if (sig100() == 0) {
 
-    $query = "UPDATE server SET emergency='1' WHERE id='$server'";
+    $query = "UPDATE mdt_server SET emergency='1' WHERE id='$server'";
     mysqli_query($conn, $query);
     } else {
         
-        $query = "UPDATE server SET emergency='0' WHERE id='$server'";
+        $query = "UPDATE mdt_server SET emergency='0' WHERE id='$server'";
         mysqli_query($conn, $query);
     }
 }
 
 function sig100() {
     include('../settings.php');
-    $query = "SELECT * FROM server";
+    $query = "SELECT * FROM mdt_server";
 
     $result = $conn->query($query);
     if ($result->num_rows > 0) {
@@ -984,7 +984,7 @@ if ($_POST['function'] == 'doesSteamExist') {
     $steam = $_POST['steam'];
     echo 'yo mama';
     
-    $query = "SELECT * FROM users WHERE steam='$steam'";
+    $query = "SELECT * FROM mdt_users WHERE steam='$steam'";
 
     $result = $conn->query($query);
     if ($result->num_rows > 1) {
@@ -995,7 +995,7 @@ if ($_POST['function'] == 'doesSteamExist') {
 }
 
 if ($_POST['function'] == 'getServers') {
-    $query = "SELECT id,ip,port FROM server";
+    $query = "SELECT id,ip,port FROM mdt_server";
     
     $result = $conn->query($query);
 
@@ -1019,7 +1019,7 @@ if ($_POST['function'] == 'getServers') {
 
 function getIPFromID($id,$conn) {
     
-    $query = "SELECT ip,port FROM server WHERE id=$id";
+    $query = "SELECT ip,port FROM mdt_server WHERE id=$id";
     
     $result = $conn->query($query);
 
@@ -1057,7 +1057,7 @@ if ($_POST['function'] == 'rcon') {
     $rcon = new q3query($fConn['ip'], $fConn['port'], $success);
     $rcon->setRconpassword($rconPW);
     $rcon->rcon($_POST['command']); 
-    //unset($rcon);
+    unset($rcon);
 }
 
 if ($_POST['function'] == 'genLogin') {
@@ -1065,18 +1065,18 @@ if ($_POST['function'] == 'genLogin') {
     $result = md5($str);
     echo $result;  
     
-    $query = "INSERT INTO users (code) VALUES ('$result')";
+    $query = "INSERT INTO mdt_users (code) VALUES ('$result')";
     mysqli_query($conn, $query);
 }
 
 if ($_POST['function'] == 'removeLogin') {
-    $query = "DELETE FROM users where code<>'(NULL)'";
+    $query = "DELETE FROM mdt_users where code<>'(NULL)'";
     mysqli_query($conn, $query);
     echo mysqli_affected_rows($conn) . " login codes deleted.";
 }
 
 if ($_POST['function'] == 'getUsersTable') {
-    $query = "SELECT name,email,suspend,user_id,admin FROM users";
+    $query = "SELECT name,email,suspend,user_id,admin FROM mdt_users";
 
     $result = $conn->query($query);
     echo "<tr><th>Name</th><th>Options</th>";
@@ -1100,7 +1100,7 @@ if ($_POST['function'] == 'getUsersTable') {
 
 if ($_POST['function'] == 'userSuspend') {
     
-    $query = "UPDATE users SET suspend='" . $_POST['suspend'] ."' WHERE user_id='" . $_POST['id'] ."'";
+    $query = "UPDATE mdt_users SET suspend='" . $_POST['suspend'] ."' WHERE user_id='" . $_POST['id'] ."'";
 
     mysqli_query($conn, $query);
 }

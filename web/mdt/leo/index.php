@@ -404,7 +404,7 @@ include('../settings.php');
             
             <table id="penalTable" style="">
                 <?php 
-                    $query = "SELECT id, name FROM penal_category";
+                    $query = "SELECT id, name FROM mdt_penal_category";
 
                 $result = $conn->query($query);
 
@@ -430,7 +430,7 @@ include('../settings.php');
             
             <table id="citationTable" style="">
                 <?php 
-                    $query = "SELECT id, name FROM penal_category";
+                    $query = "SELECT id, name FROM mdt_penal_category";
 
                 $result = $conn->query($query);
 
@@ -455,7 +455,7 @@ include('../settings.php');
             
             <table id="warningTable" style="">
                 <?php 
-                    $query = "SELECT id, name FROM penal_category";
+                    $query = "SELECT id, name FROM mdt_penal_category";
 
                 $result = $conn->query($query);
 
@@ -480,7 +480,7 @@ include('../settings.php');
 
             <table id="arrestTable" style="">
                 <?php
-                $query = "SELECT id, name FROM penal_category";
+                $query = "SELECT id, name FROM mdt_penal_category";
 
                 $result = $conn->query($query);
 

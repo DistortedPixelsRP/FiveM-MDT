@@ -22,7 +22,7 @@ if (empty($_SESSION['user_loggedIn'])) {
             <option value="add">Add Character</option>
             <?php
             $user_id = $_SESSION['user_id'];
-            $query = "SELECT id, first, last FROM characters WHERE ownerID='$user_id'";
+            $query = "SELECT id, first, last FROM mdt_characters WHERE ownerID='$user_id'";
             $result = $conn->query($query);
             
             if ($result->num_rows > 0) {
@@ -88,7 +88,7 @@ if (empty($_SESSION['user_loggedIn'])) {
             <option value="add">Add vehicle</option>
             <?php
             $user_id = $_SESSION['user_id'];
-            $query = "SELECT model, id FROM vehicles WHERE ownerID='$user_id' ";
+            $query = "SELECT model, id FROM mdt_vehicles WHERE ownerID='$user_id' ";
             $result = $conn->query($query);
 
             if ($result->num_rows > 0) {
@@ -105,7 +105,7 @@ if (empty($_SESSION['user_loggedIn'])) {
             <select style="margin-top:25px;" id="owner" name="owner">
                 <?php
                 $user_id = $_SESSION['user_id'];
-                $query = "SELECT id, first, last FROM characters WHERE ownerID='$user_id'";
+                $query = "SELECT id, first, last FROM mdt_characters WHERE ownerID='$user_id'";
                 $result = $conn->query($query);
 
                 if ($result->num_rows > 0) {

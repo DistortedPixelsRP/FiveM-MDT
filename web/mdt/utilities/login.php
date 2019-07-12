@@ -5,7 +5,7 @@ if(!empty($_POST)) {
         $password = htmlspecialchars($_POST['pass']);
         $serverNumber = htmlspecialchars($_POST['server']);
 
-    $query = "SELECT user_id, name, password, admin, steam FROM users WHERE email = ?";
+    $query = "SELECT user_id, name, password, admin, steam FROM mdt_users WHERE email = ?";
         
         try {
             $stmt = mysqli_prepare($conn, $query);

@@ -172,6 +172,7 @@ function rcon(server, command) {
     },
     function(response){
             selectServer(server);
+			console.log(response)
     });
 }
 

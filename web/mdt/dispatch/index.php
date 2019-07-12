@@ -37,7 +37,7 @@ include('../settings.php');
         <select id="type">
             <option disabled hidden selected value='Call Type'>Call Type</option>
             <?php 
-            $query = "SELECT id, name FROM call_type";
+            $query = "SELECT id, name FROM mdt_call_type";
 
             $result = $conn->query($query);
 
@@ -201,7 +201,7 @@ include('../settings.php');
 
             <table id="penalTable" style="">
                 <?php
-                $query = "SELECT id, name FROM penal_category";
+                $query = "SELECT id, name FROM mdt_penal_category";
 
                 $result = $conn->query($query);
 
@@ -247,7 +247,7 @@ include('../settings.php');
                     <select id="type">
                         <option disabled hidden selected value='Call Type'>Call Type</option>
                         <?php
-                        $query = "SELECT id, name FROM call_type";
+                        $query = "SELECT id, name FROM mdt_call_type";
 
                         $result = $conn->query($query);
 

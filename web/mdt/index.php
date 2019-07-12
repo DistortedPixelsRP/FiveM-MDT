@@ -34,7 +34,7 @@ session_start();
         <select id="server" name="server">
             <option hidden>Server</option>
             <?php
-   $query = "SELECT id,ip,port FROM server";
+   $query = "SELECT id,ip,port FROM mdt_server";
     
     $result = $conn->query($query);
 

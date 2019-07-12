@@ -8,15 +8,15 @@ if (empty($_SESSION['user_loggedIn']))
 
 $user_id = $_SESSION['user_id'];
 unset($_SESSION['user_identifier']);
-mysqli_query($conn, "DELETE FROM active_users WHERE user_id='$user_id'");
+mysqli_query($conn, "DELETE FROM mdt_active_users WHERE user_id='$user_id'");
 
-$query = "SELECT steam FROM users WHERE user_id='$user_id'";
+$query = "SELECT steam FROM mdt_users WHERE user_id='$user_id'";
 $result = $conn->query($query);
 
 if ($result->num_rows > 0) {
     // output data of each row
     while ($row = $result->fetch_assoc()) {
-        mysqli_query($conn, "DELETE FROM players WHERE steam='" . $row['steam'] . "'");
+        mysqli_query($conn, "DELETE FROM mdt_players WHERE steam='" . $row['steam'] . "'");
     }
 }
 ?>
@@ -37,7 +37,7 @@ if ($result->num_rows > 0) {
     </div>
     <div id="leodepartmentIcons">
         <?php 
-        $query = "SELECT id, name, icon FROM departments";
+        $query = "SELECT id, name, icon FROM mdt_departments";
         $result = $conn->query($query);
 
         if ($result->num_rows > 0) {
@@ -52,7 +52,7 @@ if ($result->num_rows > 0) {
     </div>
     <div id='leoDivison'>
             <?php
-    $query = "SELECT id, departmentID, name, icon FROM divisions";
+    $query = "SELECT id, departmentID, name, icon FROM mdt_divisions";
     $result = $conn->query($query);
 
     if ($result->num_rows > 0) {

@@ -1,3 +1,9 @@
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Server version:               8.0.13 - MySQL Community Server - GPL
+-- Server OS:                    Win64
+-- HeidiSQL Version:             9.5.0.5196
+-- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
@@ -5,91 +11,91 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- Dumping structure for table test.active_users
-CREATE TABLE IF NOT EXISTS `active_users` (
+-- Dumping structure for table test.mdt_active_users
+CREATE TABLE IF NOT EXISTS `mdt_active_users` (
   `user_id` int(11) DEFAULT NULL,
   `server` int(11) DEFAULT NULL,
   `callID` int(11) DEFAULT '0',
-  `identifier` varchar(50) DEFAULT NULL,
-  `status` varchar(255) DEFAULT '10-42',
-  `department` varchar(255) DEFAULT NULL,
-  `divison` varchar(255) DEFAULT NULL,
+  `identifier` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '10-42',
+  `department` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `divison` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `logout` int(11) DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Dumping data for table test.active_users: ~0 rows (approximately)
-/*!40000 ALTER TABLE `active_users` DISABLE KEYS */;
-/*!40000 ALTER TABLE `active_users` ENABLE KEYS */;
+-- Dumping data for table test.mdt_active_users: ~0 rows (approximately)
+/*!40000 ALTER TABLE `mdt_active_users` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mdt_active_users` ENABLE KEYS */;
 
--- Dumping structure for table test.aop_names
-CREATE TABLE IF NOT EXISTS `aop_names` (
-  `name` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+-- Dumping structure for table test.mdt_aop_names
+CREATE TABLE IF NOT EXISTS `mdt_aop_names` (
+  `name` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Dumping data for table test.aop_names: ~4 rows (approximately)
-/*!40000 ALTER TABLE `aop_names` DISABLE KEYS */;
-INSERT INTO `aop_names` (`name`) VALUES
+-- Dumping data for table test.mdt_aop_names: ~4 rows (approximately)
+/*!40000 ALTER TABLE `mdt_aop_names` DISABLE KEYS */;
+INSERT INTO `mdt_aop_names` (`name`) VALUES
 	('Statewide'),
 	('Blaine County'),
 	('Los Santos'),
 	('Sandy Shores & Surrounding Area');
-/*!40000 ALTER TABLE `aop_names` ENABLE KEYS */;
+/*!40000 ALTER TABLE `mdt_aop_names` ENABLE KEYS */;
 
--- Dumping structure for table test.arrests
-CREATE TABLE IF NOT EXISTS `arrests` (
+-- Dumping structure for table test.mdt_arrests
+CREATE TABLE IF NOT EXISTS `mdt_arrests` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `charaterId` int(11) DEFAULT NULL,
-  `first` varchar(50) DEFAULT NULL,
-  `last` varchar(50) DEFAULT NULL,
+  `first` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `last` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `plateId` int(11) DEFAULT NULL,
-  `plate` varchar(50) DEFAULT NULL,
-  `description` varchar(50) DEFAULT NULL,
-  `infraction` varchar(50) DEFAULT NULL,
-  `location` varchar(50) DEFAULT NULL,
-  `fine` varchar(50) DEFAULT NULL,
-  `jail` varchar(50) DEFAULT NULL,
-  `date` varchar(50) DEFAULT NULL,
-  `officer` varchar(50) DEFAULT NULL,
+  `plate` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `description` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `infraction` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `location` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `fine` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `jail` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `date` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `officer` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table test.arrests: ~6 rows (approximately)
-/*!40000 ALTER TABLE `arrests` DISABLE KEYS */;
-/*!40000 ALTER TABLE `arrests` ENABLE KEYS */;
+-- Dumping data for table test.mdt_arrests: ~0 rows (approximately)
+/*!40000 ALTER TABLE `mdt_arrests` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mdt_arrests` ENABLE KEYS */;
 
--- Dumping structure for table test.ban
-CREATE TABLE IF NOT EXISTS `ban` (
-  `steam` text,
-  `reason` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+-- Dumping structure for table test.mdt_ban
+CREATE TABLE IF NOT EXISTS `mdt_ban` (
+  `steam` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  `reason` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Dumping data for table test.ban: ~0 rows (approximately)
-/*!40000 ALTER TABLE `ban` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ban` ENABLE KEYS */;
+-- Dumping data for table test.mdt_ban: ~0 rows (approximately)
+/*!40000 ALTER TABLE `mdt_ban` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mdt_ban` ENABLE KEYS */;
 
--- Dumping structure for table test.calls
-CREATE TABLE IF NOT EXISTS `calls` (
+-- Dumping structure for table test.mdt_calls
+CREATE TABLE IF NOT EXISTS `mdt_calls` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` varchar(255) DEFAULT '0',
-  `location` varchar(50) DEFAULT NULL,
-  `details` text,
+  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '0',
+  `location` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `details` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Dumping data for table test.calls: ~2 rows (approximately)
-/*!40000 ALTER TABLE `calls` DISABLE KEYS */;
-/*!40000 ALTER TABLE `calls` ENABLE KEYS */;
+-- Dumping data for table test.mdt_calls: ~0 rows (approximately)
+/*!40000 ALTER TABLE `mdt_calls` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mdt_calls` ENABLE KEYS */;
 
--- Dumping structure for table test.call_type
-CREATE TABLE IF NOT EXISTS `call_type` (
+-- Dumping structure for table test.mdt_call_type
+CREATE TABLE IF NOT EXISTS `mdt_call_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) DEFAULT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Dumping data for table test.call_type: ~34 rows (approximately)
-/*!40000 ALTER TABLE `call_type` DISABLE KEYS */;
-INSERT INTO `call_type` (`id`, `name`) VALUES
+-- Dumping data for table test.mdt_call_type: ~34 rows (approximately)
+/*!40000 ALTER TABLE `mdt_call_type` DISABLE KEYS */;
+INSERT INTO `mdt_call_type` (`id`, `name`) VALUES
 	(1, 'Traffic Stop'),
 	(2, 'MVA'),
 	(3, 'MVA W/ Injury'),
@@ -124,56 +130,56 @@ INSERT INTO `call_type` (`id`, `name`) VALUES
 	(32, 'Trespassing'),
 	(33, 'Welfare Check'),
 	(34, 'Drugs');
-/*!40000 ALTER TABLE `call_type` ENABLE KEYS */;
+/*!40000 ALTER TABLE `mdt_call_type` ENABLE KEYS */;
 
--- Dumping structure for table test.characters
-CREATE TABLE IF NOT EXISTS `characters` (
+-- Dumping structure for table test.mdt_characters
+CREATE TABLE IF NOT EXISTS `mdt_characters` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ownerID` int(11) DEFAULT NULL,
-  `first` varchar(50) DEFAULT '0',
-  `last` varchar(50) DEFAULT '0',
-  `dob` varchar(50) DEFAULT '0',
-  `gender` varchar(50) DEFAULT '0',
-  `address` varchar(50) DEFAULT '0',
-  `lic` varchar(50) DEFAULT '0',
-  `weapon` varchar(50) DEFAULT NULL,
+  `first` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '0',
+  `last` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '0',
+  `dob` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '0',
+  `gender` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '0',
+  `address` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '0',
+  `lic` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '0',
+  `weapon` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Dumping data for table test.characters: ~3 rows (approximately)
-/*!40000 ALTER TABLE `characters` DISABLE KEYS */;
-/*!40000 ALTER TABLE `characters` ENABLE KEYS */;
+-- Dumping data for table test.mdt_characters: ~0 rows (approximately)
+/*!40000 ALTER TABLE `mdt_characters` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mdt_characters` ENABLE KEYS */;
 
--- Dumping structure for table test.departments
-CREATE TABLE IF NOT EXISTS `departments` (
+-- Dumping structure for table test.mdt_departments
+CREATE TABLE IF NOT EXISTS `mdt_departments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
-  `abbreviation` varchar(50) NOT NULL,
-  `icon` varchar(50) NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `abbreviation` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `icon` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Dumping data for table test.departments: ~3 rows (approximately)
-/*!40000 ALTER TABLE `departments` DISABLE KEYS */;
-INSERT INTO `departments` (`id`, `name`, `abbreviation`, `icon`) VALUES
+-- Dumping data for table test.mdt_departments: ~3 rows (approximately)
+/*!40000 ALTER TABLE `mdt_departments` DISABLE KEYS */;
+INSERT INTO `mdt_departments` (`id`, `name`, `abbreviation`, `icon`) VALUES
 	(1, 'San Andreas Highway Patrol', 'SAHP', 'SAHP'),
 	(2, 'Blaine County Sheriffs Office', 'BCSO', 'BCSO'),
 	(3, 'Los Santos Police Department', 'LSPD', 'LSPD');
-/*!40000 ALTER TABLE `departments` ENABLE KEYS */;
+/*!40000 ALTER TABLE `mdt_departments` ENABLE KEYS */;
 
--- Dumping structure for table test.divisions
-CREATE TABLE IF NOT EXISTS `divisions` (
+-- Dumping structure for table test.mdt_divisions
+CREATE TABLE IF NOT EXISTS `mdt_divisions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `departmentID` int(11) NOT NULL,
-  `name` varchar(50) DEFAULT NULL,
-  `abbreviation` varchar(50) NOT NULL,
-  `icon` varchar(50) NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `abbreviation` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `icon` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table test.divisions: ~25 rows (approximately)
-/*!40000 ALTER TABLE `divisions` DISABLE KEYS */;
-INSERT INTO `divisions` (`id`, `departmentID`, `name`, `abbreviation`, `icon`) VALUES
+-- Dumping data for table test.mdt_divisions: ~25 rows (approximately)
+/*!40000 ALTER TABLE `mdt_divisions` DISABLE KEYS */;
+INSERT INTO `mdt_divisions` (`id`, `departmentID`, `name`, `abbreviation`, `icon`) VALUES
 	(1, 3, 'Patrol', 'Patrol', 'LSPD'),
 	(2, 3, 'K9', 'K9', 'K9'),
 	(3, 3, 'Port Authority', 'PA', 'PA'),
@@ -199,38 +205,38 @@ INSERT INTO `divisions` (`id`, `departmentID`, `name`, `abbreviation`, `icon`) V
 	(23, 2, 'SWAT', 'SWAT', 'SWAT'),
 	(24, 3, 'SWAT', 'SWAT', 'SWAT'),
 	(25, 1, 'CVE', 'CVE', 'cve');
-/*!40000 ALTER TABLE `divisions` ENABLE KEYS */;
+/*!40000 ALTER TABLE `mdt_divisions` ENABLE KEYS */;
 
--- Dumping structure for table test.penal_category
-CREATE TABLE IF NOT EXISTS `penal_category` (
+-- Dumping structure for table test.mdt_penal_category
+CREATE TABLE IF NOT EXISTS `mdt_penal_category` (
   `id` int(11) DEFAULT NULL,
-  `name` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Dumping data for table test.penal_category: ~4 rows (approximately)
-/*!40000 ALTER TABLE `penal_category` DISABLE KEYS */;
-INSERT INTO `penal_category` (`id`, `name`) VALUES
+-- Dumping data for table test.mdt_penal_category: ~4 rows (approximately)
+/*!40000 ALTER TABLE `mdt_penal_category` DISABLE KEYS */;
+INSERT INTO `mdt_penal_category` (`id`, `name`) VALUES
 	(1, 'Property'),
 	(2, 'Possession'),
 	(3, 'Violent Crimes'),
 	(4, 'Traffic');
-/*!40000 ALTER TABLE `penal_category` ENABLE KEYS */;
+/*!40000 ALTER TABLE `mdt_penal_category` ENABLE KEYS */;
 
--- Dumping structure for table test.penal_charges
-CREATE TABLE IF NOT EXISTS `penal_charges` (
+-- Dumping structure for table test.mdt_penal_charges
+CREATE TABLE IF NOT EXISTS `mdt_penal_charges` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cat` int(11) DEFAULT NULL,
-  `name` varchar(50) DEFAULT NULL,
-  `type` varchar(50) DEFAULT NULL,
-  `punishment` text,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `punishment` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `fine` int(11) DEFAULT NULL,
   `jail` int(11) DEFAULT NULL,
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table test.penal_charges: ~0 rows (approximately)
-/*!40000 ALTER TABLE `penal_charges` DISABLE KEYS */;
-INSERT INTO `penal_charges` (`id`, `cat`, `name`, `type`, `punishment`, `fine`, `jail`) VALUES
+-- Dumping data for table test.mdt_penal_charges: ~31 rows (approximately)
+/*!40000 ALTER TABLE `mdt_penal_charges` DISABLE KEYS */;
+INSERT INTO `mdt_penal_charges` (`id`, `cat`, `name`, `type`, `punishment`, `fine`, `jail`) VALUES
 	(1, 1, 'Destruction', 'Misdemeanor', '10 Seconds In Jail', 0, 10),
 	(2, 1, 'Theft', 'Misdemeanor', '25 Seconds In Jail AND $1,000 Fine', 1000, 25),
 	(3, 1, 'Trespassing', 'Misdemeanor', '$1,000 Fine OR 10 Seconds In Jail', 1000, 10),
@@ -262,113 +268,113 @@ INSERT INTO `penal_charges` (`id`, `cat`, `name`, `type`, `punishment`, `fine`, 
 	(31, 4, 'Failure to Stop', 'Traffic', '$300 Fine', 300, 0),
 	(32, 4, 'Failure to Stop at Traffic Signal', 'Traffic', '$500 Fine', 500, 0),
 	(33, 4, 'Parking Ticket', 'Traffic', '$50+ Fine', 50, 0);
-/*!40000 ALTER TABLE `penal_charges` ENABLE KEYS */;
+/*!40000 ALTER TABLE `mdt_penal_charges` ENABLE KEYS */;
 
--- Dumping structure for table test.players
-CREATE TABLE IF NOT EXISTS `players` (
+-- Dumping structure for table test.mdt_players
+CREATE TABLE IF NOT EXISTS `mdt_players` (
   `id` int(11) DEFAULT NULL,
-  `steam` char(50) DEFAULT NULL,
-  `name` char(50) DEFAULT NULL,
-  `code` char(50) DEFAULT NULL,
+  `steam` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `name` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `code` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   KEY `steam` (`steam`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Dumping data for table test.players: ~0 rows (approximately)
-/*!40000 ALTER TABLE `players` DISABLE KEYS */;
-/*!40000 ALTER TABLE `players` ENABLE KEYS */;
+-- Dumping data for table test.mdt_players: ~0 rows (approximately)
+/*!40000 ALTER TABLE `mdt_players` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mdt_players` ENABLE KEYS */;
 
--- Dumping structure for table test.server
-CREATE TABLE IF NOT EXISTS `server` (
+-- Dumping structure for table test.mdt_server
+CREATE TABLE IF NOT EXISTS `mdt_server` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `status` varchar(50) DEFAULT NULL,
-  `aop` varchar(50) DEFAULT NULL,
+  `status` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `aop` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `emergency` int(11) DEFAULT '0',
-  `ip` varchar(50) DEFAULT '0',
-  `port` varchar(50) DEFAULT '0',
+  `ip` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '0',
+  `port` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '0',
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Dumping data for table test.server: ~0 rows (approximately)
-/*!40000 ALTER TABLE `server` DISABLE KEYS */;
-INSERT INTO `server` (`id`, `status`, `aop`, `emergency`, `ip`, `port`) VALUES
+-- Dumping data for table test.mdt_server: ~1 rows (approximately)
+/*!40000 ALTER TABLE `mdt_server` DISABLE KEYS */;
+INSERT INTO `mdt_server` (`id`, `status`, `aop`, `emergency`, `ip`, `port`) VALUES
 	(1, 'offline', 'Sandy Shores & Surrounding Area', 0, 'localhost', '30120');
-/*!40000 ALTER TABLE `server` ENABLE KEYS */;
+/*!40000 ALTER TABLE `mdt_server` ENABLE KEYS */;
 
--- Dumping structure for table test.tickets
-CREATE TABLE IF NOT EXISTS `tickets` (
+-- Dumping structure for table test.mdt_tickets
+CREATE TABLE IF NOT EXISTS `mdt_tickets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `charaterId` int(11) DEFAULT NULL,
-  `first` varchar(50) DEFAULT NULL,
-  `last` varchar(50) DEFAULT NULL,
+  `first` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `last` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `plateId` int(11) DEFAULT NULL,
-  `plate` varchar(50) DEFAULT NULL,
-  `description` varchar(50) DEFAULT NULL,
-  `infraction` text,
-  `location` varchar(50) DEFAULT NULL,
+  `plate` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `description` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `infraction` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  `location` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `fine` int(11) DEFAULT NULL,
-  `date` varchar(50) DEFAULT NULL,
-  `officer` varchar(50) DEFAULT NULL,
+  `date` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `officer` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Dumping data for table test.tickets: ~0 rows (approximately)
-/*!40000 ALTER TABLE `tickets` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tickets` ENABLE KEYS */;
+-- Dumping data for table test.mdt_tickets: ~0 rows (approximately)
+/*!40000 ALTER TABLE `mdt_tickets` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mdt_tickets` ENABLE KEYS */;
 
--- Dumping structure for table test.users
-CREATE TABLE IF NOT EXISTS `users` (
+-- Dumping structure for table test.mdt_users
+CREATE TABLE IF NOT EXISTS `mdt_users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(255) DEFAULT NULL,
-  `password` text,
-  `name` text,
+  `email` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `password` text CHARACTER SET latin1,
+  `name` text CHARACTER SET latin1,
   `admin` int(11) DEFAULT NULL,
-  `steam` varchar(500) DEFAULT '0',
-  `code` varchar(50) DEFAULT NULL,
+  `steam` varchar(500) CHARACTER SET latin1 DEFAULT '0',
+  `code` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
   `suspend` int(11) DEFAULT '0',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Dumping data for table test.users: ~0 rows (approximately)
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+-- Dumping data for table test.mdt_users: ~1 rows (approximately)
+/*!40000 ALTER TABLE `mdt_users` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mdt_users` ENABLE KEYS */;
 
--- Dumping structure for table test.vehicles
-CREATE TABLE IF NOT EXISTS `vehicles` (
+-- Dumping structure for table test.mdt_vehicles
+CREATE TABLE IF NOT EXISTS `mdt_vehicles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ownerID` int(11) DEFAULT '0',
-  `characterID` varchar(50) DEFAULT NULL,
-  `model` varchar(50) DEFAULT NULL,
-  `plate` varchar(50) DEFAULT NULL,
-  `description` varchar(50) DEFAULT NULL,
-  `reg` varchar(50) DEFAULT NULL,
-  `insurance` varchar(50) DEFAULT NULL,
-  `flags` varchar(50) DEFAULT NULL,
+  `characterID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `model` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `plate` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `description` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `reg` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `insurance` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `flags` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Dumping data for table test.vehicles: ~0 rows (approximately)
-/*!40000 ALTER TABLE `vehicles` DISABLE KEYS */;
-/*!40000 ALTER TABLE `vehicles` ENABLE KEYS */;
+-- Dumping data for table test.mdt_vehicles: ~0 rows (approximately)
+/*!40000 ALTER TABLE `mdt_vehicles` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mdt_vehicles` ENABLE KEYS */;
 
--- Dumping structure for table test.warnings
-CREATE TABLE IF NOT EXISTS `warnings` (
+-- Dumping structure for table test.mdt_warnings
+CREATE TABLE IF NOT EXISTS `mdt_warnings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `charaterId` int(11) DEFAULT NULL,
-  `first` varchar(50) DEFAULT NULL,
-  `last` varchar(50) DEFAULT NULL,
+  `first` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `last` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `plateId` int(11) DEFAULT NULL,
-  `plate` varchar(50) DEFAULT NULL,
-  `description` varchar(50) DEFAULT NULL,
-  `infraction` text,
-  `location` varchar(50) DEFAULT NULL,
-  `date` varchar(50) DEFAULT NULL,
-  `officer` varchar(50) DEFAULT NULL,
+  `plate` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `description` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `infraction` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  `location` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `date` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `officer` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table test.warnings: ~0 rows (approximately)
-/*!40000 ALTER TABLE `warnings` DISABLE KEYS */;
-/*!40000 ALTER TABLE `warnings` ENABLE KEYS */;
+-- Dumping data for table test.mdt_warnings: ~0 rows (approximately)
+/*!40000 ALTER TABLE `mdt_warnings` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mdt_warnings` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;

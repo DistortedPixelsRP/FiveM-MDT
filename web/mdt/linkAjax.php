@@ -17,7 +17,7 @@ if (isset($_POST['code'])) {
  
 //Search query.
  
-   $Query = "SELECT * FROM players WHERE code='$Name'";
+   $Query = "SELECT * FROM mdt_players WHERE code='$Name'";
  
 //Query execution
  
@@ -68,7 +68,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$sql = "UPDATE users SET steam='$SteamID' WHERE user_id='$UserID'";
+$sql = "UPDATE mdt_users SET steam='$SteamID' WHERE user_id='$UserID'";
 
 if ($conn->query($sql) === TRUE) {
     //echo "Record updated successfully $sql";

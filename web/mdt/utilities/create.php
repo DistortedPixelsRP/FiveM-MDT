@@ -17,7 +17,7 @@ if(!empty($_POST)) {
     $password = password_hash($password, PASSWORD_DEFAULT);
     
     if ($enableCode == true) {
-        $query = "SELECT * FROM users WHERE code='$code'";
+        $query = "SELECT * FROM mdt_users WHERE code='$code'";
 
         $result = $conn->query($query);
 
@@ -27,7 +27,7 @@ if(!empty($_POST)) {
             header("Location:$defaultURL/create.php");
             exit();
         } else {    
-            $query = "UPDATE users SET name='$name', email='$email', password='$password', code='(NULL)' WHERE code='$code'";
+            $query = "UPDATE mdt_users SET name='$name', email='$email', password='$password', code='(NULL)' WHERE code='$code'";
 
             mysqli_query($conn, $query);
             header("Location:$defaultURL/index.php");
@@ -35,7 +35,7 @@ if(!empty($_POST)) {
         }
     }
 
-$query = "INSERT INTO users (name, email, password, code) VALUES ('$name', '$email', '$password', '(NULL)')";
+$query = "INSERT INTO mdt_users (name, email, password, code) VALUES ('$name', '$email', '$password', '(NULL)')";
 
 mysqli_query($conn, $query);
 header("Location:$defaultURL/index.php");

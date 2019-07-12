@@ -7,14 +7,14 @@ $dbname = ""; //Name of the database with the provided SQL files
 
 //Steam API key
 //Get a Steam API key from https://steamcommunity.com/dev/apikey and enter it here. Don't know why I added this, may get removed in next version.
-$SteamAPI_KEY = "5983858A0DEB07846F46D2D2386E89BA";
+$SteamAPI_KEY = "";
 
 //FiveM Server
 //Enter FiveM server rcon password. If you are running multiple servers they all must have the same rcon password.
-$rconPW = "";
+$rconPW = "Jeff";
 
 //Website Url
-$defaultURL = "//localhost/mdt"; //Url to where the MDT pages can be found. MUST INCLUDE "//" BEFORE URL ex: //test.com/mdt
+$defaultURL = "//bennyfaelz.com/mdt"; //Url to where the MDT pages can be found. MUST INCLUDE "//" BEFORE URL ex: //test.com/mdt
 
 //Top bar title
 $topTitle = "MDT";
