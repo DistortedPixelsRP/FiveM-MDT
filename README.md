@@ -106,6 +106,8 @@ To become admin and use the admin panel (example.com/mdt/admin) open HeidiSQL an
 - mysql_connection_string is not set up correctly
 
 ###### Infinite Checking...
+- Your MySQL is not running
+- mysql_connection_string is not set up correctly
 - Make sure your using the latest version.
 
 ### Known Bugs/Issues
