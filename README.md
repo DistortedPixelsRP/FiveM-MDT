@@ -69,6 +69,7 @@ I have decided that the MDT is ready to be released! Please follow the instructi
 - More Essentialmode compatibility
 - Utilization of ES and ESX
 - Better plate, name and citation search UI
+- Revamped Civilian Department
 - More admin features
 
 ## Requirements
