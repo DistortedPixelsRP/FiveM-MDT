@@ -68,13 +68,13 @@ I have decided that the MDT is ready to be released! Please follow the instructi
 ### Upcoming Features
 - More Essentialmode compatibility
 - Utilization of ES and ESX
-- Better plate, name and citation search UI
+- Improved UI
 - Revamped Civilian Department
 - More admin features
 
 ## Requirements
 - MySQL server
-- Web server
+- Web server w/ latest version of PHP
 - FiveM Server
      - [mysql-async](https://github.com/brouznouf/fivem-mysql-async)
 
@@ -123,7 +123,7 @@ This section is divided into 3 parts:
 ### Done
 You are almost done! Open up HeidiSQL and go to the server table. In the `ip` column enter your FiveM server's [public IPv4](https://www.whatismyip.com/). In the `port` column enter your FiveM server's port (default port is 30120). Next, start your FiveM server using `start server.bat`. Now when you open your MBT login page you will see when you click on the server selector that one server is server online.
 
-To become admin and use the admin panel (example.com/mdt/admin) open HeidiSQL and select the users table. In the row with your account set the admin column to any number greater than 0. 
+To become admin and use the admin panel open HeidiSQL and select the users table. In the row with your account set the admin column to any number greater than 0. Currently the only way to get to the pannel is by typing in the url: `<your mdt login page url>/admin`. (ex. `bennyfaelz.com/mdt/admin/`)
 
 ### FiveM Commands
 - `/link` used to link your FiveM and MDT account. When logging in for the first time it will ask to link to your FiveM
@@ -156,8 +156,9 @@ To become admin and use the admin panel (example.com/mdt/admin) open HeidiSQL an
 - Make sure your using the latest version.
 
 ### Known Bugs/Issues
-- ~~SQL file not importing properly. Fix: Use HeidiSQL to import OR change utf8mb4_0900_ai_ci to utf8mb4_bin inside the SQL file~~
-- ~~When running multiple servers on one machine, when one of them restarts they all restart. Fix: In the next release.~~
+- All department/divison pics have to be .png
+- If one of the FiveM servers in the DB are offline the login and admin pages might have longer loading times.
+- Servers not showing up. Fix: Change allow_url_fopen in your php.ini to On 
 
 ### Suggestions and Support
 Join the discord
