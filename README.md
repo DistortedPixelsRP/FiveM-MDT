@@ -159,6 +159,7 @@ To become admin and use the admin panel open HeidiSQL and select the users table
 - All department/divison pics have to be .png
 - If one of the FiveM servers in the DB are offline the login and admin pages might have longer loading times.
 - Servers not showing up. Fix: Change allow_url_fopen in your php.ini to On 
+- Suspending users in the admin panel does not work. No fix, I'm just dumb and forgot to finish it before release lol.
 
 ### Suggestions and Support
 Join the discord
