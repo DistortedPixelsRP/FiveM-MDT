@@ -6,6 +6,11 @@
 <h3>PLEASE READ DISCORD ANNOUNCEMENTS FOR UPDATES ON PROJECT STATUS</H3>
 
 
+<h1>IMPORTANT</h1>
+Do not uses unless you know what you are doing. This is stuff I was working on before I decided to take a break. Feel free to branch and edit. Sorry some of my code kinda sucks.
+Don't forget to check the dicord :)
+
+
 ## Features
 - In game character selection system
 - In game ID card system

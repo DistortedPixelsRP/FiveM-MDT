@@ -11,28 +11,29 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- Dumping structure for table test.mdt_active_users
+-- Dumping structure for table essentialmode.mdt_active_users
 CREATE TABLE IF NOT EXISTS `mdt_active_users` (
   `user_id` int(11) DEFAULT NULL,
   `server` int(11) DEFAULT NULL,
   `callID` int(11) DEFAULT '0',
-  `identifier` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '10-42',
-  `department` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `divison` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `identifier` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT '10-42',
+  `department` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `divison` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `type` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
   `logout` int(11) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Dumping data for table test.mdt_active_users: ~0 rows (approximately)
+-- Dumping data for table essentialmode.mdt_active_users: ~1 rows (approximately)
 /*!40000 ALTER TABLE `mdt_active_users` DISABLE KEYS */;
 /*!40000 ALTER TABLE `mdt_active_users` ENABLE KEYS */;
 
--- Dumping structure for table test.mdt_aop_names
+-- Dumping structure for table essentialmode.mdt_aop_names
 CREATE TABLE IF NOT EXISTS `mdt_aop_names` (
-  `name` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci
+  `name` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Dumping data for table test.mdt_aop_names: ~4 rows (approximately)
+-- Dumping data for table essentialmode.mdt_aop_names: ~4 rows (approximately)
 /*!40000 ALTER TABLE `mdt_aop_names` DISABLE KEYS */;
 INSERT INTO `mdt_aop_names` (`name`) VALUES
 	('Statewide'),
@@ -41,59 +42,64 @@ INSERT INTO `mdt_aop_names` (`name`) VALUES
 	('Sandy Shores & Surrounding Area');
 /*!40000 ALTER TABLE `mdt_aop_names` ENABLE KEYS */;
 
--- Dumping structure for table test.mdt_arrests
+-- Dumping structure for table essentialmode.mdt_arrests
 CREATE TABLE IF NOT EXISTS `mdt_arrests` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `charaterId` int(11) DEFAULT NULL,
-  `first` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `last` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `first` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `last` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   `plateId` int(11) DEFAULT NULL,
-  `plate` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `description` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `infraction` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `location` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `fine` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `jail` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `date` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `officer` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `plate` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `description` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `infraction` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `location` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `fine` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `jail` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `date` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `officer` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table test.mdt_arrests: ~0 rows (approximately)
+-- Dumping data for table essentialmode.mdt_arrests: ~0 rows (approximately)
 /*!40000 ALTER TABLE `mdt_arrests` DISABLE KEYS */;
+INSERT INTO `mdt_arrests` (`id`, `charaterId`, `first`, `last`, `plateId`, `plate`, `description`, `infraction`, `location`, `fine`, `jail`, `date`, `officer`) VALUES
+	(14, 49, 'Bruton', 'Gaster', 0, '', '', '["Speeding 100+"]', 'Joshua Road', '1000', '0', '08-05-2019 23:28:24', '2B-12 [SAHP]');
 /*!40000 ALTER TABLE `mdt_arrests` ENABLE KEYS */;
 
--- Dumping structure for table test.mdt_ban
+-- Dumping structure for table essentialmode.mdt_ban
 CREATE TABLE IF NOT EXISTS `mdt_ban` (
-  `steam` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
-  `reason` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci
+  `steam` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  `reason` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Dumping data for table test.mdt_ban: ~0 rows (approximately)
+-- Dumping data for table essentialmode.mdt_ban: ~0 rows (approximately)
 /*!40000 ALTER TABLE `mdt_ban` DISABLE KEYS */;
 /*!40000 ALTER TABLE `mdt_ban` ENABLE KEYS */;
 
--- Dumping structure for table test.mdt_calls
+-- Dumping structure for table essentialmode.mdt_calls
 CREATE TABLE IF NOT EXISTS `mdt_calls` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '0',
-  `location` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `details` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT '0',
+  `location` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `details` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  `notes` longtext COLLATE utf8mb4_bin,
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Dumping data for table test.mdt_calls: ~0 rows (approximately)
+-- Dumping data for table essentialmode.mdt_calls: ~2 rows (approximately)
 /*!40000 ALTER TABLE `mdt_calls` DISABLE KEYS */;
+INSERT INTO `mdt_calls` (`id`, `type`, `location`, `details`, `notes`) VALUES
+	(28, 'Pursuit', 'Joshua Road / Nearest Postal 777', '', NULL);
 /*!40000 ALTER TABLE `mdt_calls` ENABLE KEYS */;
 
--- Dumping structure for table test.mdt_call_type
+-- Dumping structure for table essentialmode.mdt_call_type
 CREATE TABLE IF NOT EXISTS `mdt_call_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Dumping data for table test.mdt_call_type: ~34 rows (approximately)
+-- Dumping data for table essentialmode.mdt_call_type: ~34 rows (approximately)
 /*!40000 ALTER TABLE `mdt_call_type` DISABLE KEYS */;
 INSERT INTO `mdt_call_type` (`id`, `name`) VALUES
 	(1, 'Traffic Stop'),
@@ -132,59 +138,65 @@ INSERT INTO `mdt_call_type` (`id`, `name`) VALUES
 	(34, 'Drugs');
 /*!40000 ALTER TABLE `mdt_call_type` ENABLE KEYS */;
 
--- Dumping structure for table test.mdt_characters
+-- Dumping structure for table essentialmode.mdt_characters
 CREATE TABLE IF NOT EXISTS `mdt_characters` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ownerID` int(11) DEFAULT NULL,
-  `first` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '0',
-  `last` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '0',
-  `dob` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '0',
-  `gender` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '0',
-  `address` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '0',
-  `lic` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '0',
-  `weapon` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+  `first` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT '0',
+  `last` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT '0',
+  `dob` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT '0',
+  `gender` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT '0',
+  `address` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT '0',
+  `lic` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT '[]',
+  `med` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT '[]',
+  `warrant` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT '[]',
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Dumping data for table test.mdt_characters: ~0 rows (approximately)
+-- Dumping data for table essentialmode.mdt_characters: ~9 rows (approximately)
 /*!40000 ALTER TABLE `mdt_characters` DISABLE KEYS */;
+INSERT INTO `mdt_characters` (`id`, `ownerID`, `first`, `last`, `dob`, `gender`, `address`, `lic`, `med`, `warrant`) VALUES
+	(49, 59, 'Bruton', 'Gaster', '1969-04-20', 'Male', 'Santa Barbara', '[{"id":"1","name":"Driver License","type":"Non-Commercial","status":"Valid"},{"id":"2","name":"Boating License","type":"Boating License","status":"Valid"}]', 'null', 'null'),
+	(52, 59, 'Jo', 'Mama', '2019-08-01', 'Male', 'Jo mama', 'null', 'null', '[]');
 /*!40000 ALTER TABLE `mdt_characters` ENABLE KEYS */;
 
--- Dumping structure for table test.mdt_departments
+-- Dumping structure for table essentialmode.mdt_departments
 CREATE TABLE IF NOT EXISTS `mdt_departments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `abbreviation` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `icon` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `abbreviation` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `icon` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `type` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Dumping data for table test.mdt_departments: ~3 rows (approximately)
+-- Dumping data for table essentialmode.mdt_departments: ~3 rows (approximately)
 /*!40000 ALTER TABLE `mdt_departments` DISABLE KEYS */;
-INSERT INTO `mdt_departments` (`id`, `name`, `abbreviation`, `icon`) VALUES
-	(1, 'San Andreas Highway Patrol', 'SAHP', 'SAHP'),
-	(2, 'Blaine County Sheriffs Office', 'BCSO', 'BCSO'),
-	(3, 'Los Santos Police Department', 'LSPD', 'LSPD');
+INSERT INTO `mdt_departments` (`id`, `name`, `abbreviation`, `icon`, `type`) VALUES
+	(1, 'San Andreas Highway Patrol', 'SAHP', 'SAHP', 'leo'),
+	(2, 'Blaine County Sheriffs Office', 'BCSO', 'BCSO', 'leo'),
+	(3, 'Los Santos Police Department', 'LSPD', 'LSPD', 'leo'),
+	(4, 'Los Santos Fire Department', 'LSFD', 'LSFD', 'ems');
 /*!40000 ALTER TABLE `mdt_departments` ENABLE KEYS */;
 
--- Dumping structure for table test.mdt_divisions
+-- Dumping structure for table essentialmode.mdt_divisions
 CREATE TABLE IF NOT EXISTS `mdt_divisions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `departmentID` int(11) NOT NULL,
-  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `abbreviation` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `icon` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `abbreviation` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `icon` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table test.mdt_divisions: ~25 rows (approximately)
+-- Dumping data for table essentialmode.mdt_divisions: ~25 rows (approximately)
 /*!40000 ALTER TABLE `mdt_divisions` DISABLE KEYS */;
 INSERT INTO `mdt_divisions` (`id`, `departmentID`, `name`, `abbreviation`, `icon`) VALUES
 	(1, 3, 'Patrol', 'Patrol', 'LSPD'),
 	(2, 3, 'K9', 'K9', 'K9'),
 	(3, 3, 'Port Authority', 'PA', 'PA'),
 	(4, 3, 'Traffic', 'TRAFFIC', 'traffic'),
-	(5, 2, 'Patrol', ' ', 'BCSO'),
+	(5, 2, 'Patrol', 'Patrol', 'BCSO'),
 	(6, 2, 'Traffic', 'TRAFFIC', 'traffic'),
 	(7, 2, 'K9', 'K9', 'K9'),
 	(8, 3, 'Detective', 'DETECTIVE', 'detective'),
@@ -204,16 +216,33 @@ INSERT INTO `mdt_divisions` (`id`, `departmentID`, `name`, `abbreviation`, `icon
 	(22, 1, 'SWAT', 'SWAT', 'SWAT'),
 	(23, 2, 'SWAT', 'SWAT', 'SWAT'),
 	(24, 3, 'SWAT', 'SWAT', 'SWAT'),
-	(25, 1, 'CVE', 'CVE', 'cve');
+	(25, 1, 'CVE', 'CVE', 'cve'),
+	(26, 4, 'Medic', 'MEDIC', 'medic');
 /*!40000 ALTER TABLE `mdt_divisions` ENABLE KEYS */;
 
--- Dumping structure for table test.mdt_penal_category
+-- Dumping structure for table essentialmode.mdt_licenses
+CREATE TABLE IF NOT EXISTS `mdt_licenses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` text COLLATE utf8mb4_bin,
+  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT '[]',
+  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT '["None", "Valid", "Expired", "Suspended", "Revoked"]',
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+-- Dumping data for table essentialmode.mdt_licenses: ~1 rows (approximately)
+/*!40000 ALTER TABLE `mdt_licenses` DISABLE KEYS */;
+INSERT INTO `mdt_licenses` (`id`, `name`, `type`, `status`) VALUES
+	(1, 'Driver License', '["Non-Commercial", "Motorcycle", "Commercial" ]', '["Valid", "Expired", "Suspended", "Revoked"]'),
+	(2, 'Boating License', '["Boating License" ]', '["Valid", "Expired", "Suspended", "Revoked"]');
+/*!40000 ALTER TABLE `mdt_licenses` ENABLE KEYS */;
+
+-- Dumping structure for table essentialmode.mdt_penal_category
 CREATE TABLE IF NOT EXISTS `mdt_penal_category` (
   `id` int(11) DEFAULT NULL,
-  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Dumping data for table test.mdt_penal_category: ~4 rows (approximately)
+-- Dumping data for table essentialmode.mdt_penal_category: ~4 rows (approximately)
 /*!40000 ALTER TABLE `mdt_penal_category` DISABLE KEYS */;
 INSERT INTO `mdt_penal_category` (`id`, `name`) VALUES
 	(1, 'Property'),
@@ -222,19 +251,19 @@ INSERT INTO `mdt_penal_category` (`id`, `name`) VALUES
 	(4, 'Traffic');
 /*!40000 ALTER TABLE `mdt_penal_category` ENABLE KEYS */;
 
--- Dumping structure for table test.mdt_penal_charges
+-- Dumping structure for table essentialmode.mdt_penal_charges
 CREATE TABLE IF NOT EXISTS `mdt_penal_charges` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cat` int(11) DEFAULT NULL,
-  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `punishment` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `punishment` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
   `fine` int(11) DEFAULT NULL,
   `jail` int(11) DEFAULT NULL,
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table test.mdt_penal_charges: ~31 rows (approximately)
+-- Dumping data for table essentialmode.mdt_penal_charges: ~31 rows (approximately)
 /*!40000 ALTER TABLE `mdt_penal_charges` DISABLE KEYS */;
 INSERT INTO `mdt_penal_charges` (`id`, `cat`, `name`, `type`, `punishment`, `fine`, `jail`) VALUES
 	(1, 1, 'Destruction', 'Misdemeanor', '10 Seconds In Jail', 0, 10),
@@ -270,110 +299,150 @@ INSERT INTO `mdt_penal_charges` (`id`, `cat`, `name`, `type`, `punishment`, `fin
 	(33, 4, 'Parking Ticket', 'Traffic', '$50+ Fine', 50, 0);
 /*!40000 ALTER TABLE `mdt_penal_charges` ENABLE KEYS */;
 
--- Dumping structure for table test.mdt_players
+-- Dumping structure for table essentialmode.mdt_players
 CREATE TABLE IF NOT EXISTS `mdt_players` (
   `id` int(11) DEFAULT NULL,
-  `steam` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `name` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `code` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `steam` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `name` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `code` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   KEY `steam` (`steam`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Dumping data for table test.mdt_players: ~0 rows (approximately)
+-- Dumping data for table essentialmode.mdt_players: ~0 rows (approximately)
 /*!40000 ALTER TABLE `mdt_players` DISABLE KEYS */;
 /*!40000 ALTER TABLE `mdt_players` ENABLE KEYS */;
 
--- Dumping structure for table test.mdt_server
+-- Dumping structure for table essentialmode.mdt_server
 CREATE TABLE IF NOT EXISTS `mdt_server` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `status` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `aop` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `status` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `players` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
+  `uptime` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
+  `aop` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   `emergency` int(11) DEFAULT '0',
-  `ip` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '0',
-  `port` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '0',
+  `ip` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT '0',
+  `port` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT '0',
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Dumping data for table test.mdt_server: ~1 rows (approximately)
+-- Dumping data for table essentialmode.mdt_server: ~1 rows (approximately)
 /*!40000 ALTER TABLE `mdt_server` DISABLE KEYS */;
-INSERT INTO `mdt_server` (`id`, `status`, `aop`, `emergency`, `ip`, `port`) VALUES
-	(1, 'offline', 'Sandy Shores & Surrounding Area', 0, 'localhost', '30120');
+INSERT INTO `mdt_server` (`id`, `status`, `players`, `uptime`, `aop`, `emergency`, `ip`, `port`) VALUES
+	(1, '2019-08-03 03:35:20', '0', '05h 52m', 'Blaine County', 0, '127.0.0.1', '30122');
 /*!40000 ALTER TABLE `mdt_server` ENABLE KEYS */;
 
--- Dumping structure for table test.mdt_tickets
+-- Dumping structure for table essentialmode.mdt_tickets
 CREATE TABLE IF NOT EXISTS `mdt_tickets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `charaterId` int(11) DEFAULT NULL,
-  `first` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `last` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `first` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `last` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   `plateId` int(11) DEFAULT NULL,
-  `plate` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `description` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `infraction` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
-  `location` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `plate` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `description` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `infraction` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  `location` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   `fine` int(11) DEFAULT NULL,
-  `date` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `officer` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `date` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `officer` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `notes` longtext COLLATE utf8mb4_bin,
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Dumping data for table test.mdt_tickets: ~0 rows (approximately)
+-- Dumping data for table essentialmode.mdt_tickets: ~8 rows (approximately)
 /*!40000 ALTER TABLE `mdt_tickets` DISABLE KEYS */;
+INSERT INTO `mdt_tickets` (`id`, `charaterId`, `first`, `last`, `plateId`, `plate`, `description`, `infraction`, `location`, `fine`, `date`, `officer`, `notes`) VALUES
+	(13, 49, 'Bruton', 'Gaster', 0, '811', '', '["Trespassing"]', 'Joshua Road', 1000, '08-05-2019 23:14:44', '2B-12 [SAHP]', NULL),
+	(14, 49, 'Bruton', 'Gaster', 0, '', '', '["Theft"]', 'Joshua Road', 1000, '08-05-2019 23:17:39', '2B-12 [SAHP]', NULL),
+	(15, 49, 'Bruton', 'Gaster', 0, '2FST4U4', 'Rusty Rebel - White', '["Destruction","Stolen Property"]', 'Joshua Road', 0, '08-17-2019 22:12:30', ' [SAHP]', NULL),
+	(16, 49, 'Bruton', 'Gaster', 0, '2FST4U4', 'Rusty Rebel - White', '["Destruction","Stolen Property"]', 'Joshua Road', 0, '08-17-2019 22:12:36', ' [SAHP]', NULL),
+	(17, 49, 'Bruton', 'Gaster', 0, '2FST4U', '', '["Stolen Weapon"]', 'Joshua Road', 0, '08-24-2019 13:18:22', '2B-12 [SAHP]', NULL),
+	(18, 49, 'Bruton', 'Gaster', 0, '2FST4U4', 'Rusty Rebel - White', '["Assault W/ A Deadly Weapon"]', 'Joshua Road', 0, '08-24-2019 13:21:22', '2B-12 [SAHP]', NULL),
+	(20, 49, 'Bruton', 'Gaster', 0, '2FST4U4', 'Rusty Rebel - White', '["Battery"]', 'Joshua Road', 1000, '08-24-2019 13:29:32', '2B-12 [SAHP]', NULL);
 /*!40000 ALTER TABLE `mdt_tickets` ENABLE KEYS */;
 
--- Dumping structure for table test.mdt_users
+-- Dumping structure for table essentialmode.mdt_users
 CREATE TABLE IF NOT EXISTS `mdt_users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
-  `password` text CHARACTER SET latin1,
-  `name` text CHARACTER SET latin1,
+  `email` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `password` text CHARACTER SET latin1 COLLATE latin1_swedish_ci,
+  `name` text CHARACTER SET latin1 COLLATE latin1_swedish_ci,
   `admin` int(11) DEFAULT NULL,
-  `steam` varchar(500) CHARACTER SET latin1 DEFAULT '0',
-  `code` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
-  `suspend` int(11) DEFAULT '0',
+  `steam` varchar(500) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT '0',
+  `code` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `suspend` int(11) NOT NULL DEFAULT '0',
+  `role` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '[]',
+  `pass_reset` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Dumping data for table test.mdt_users: ~1 rows (approximately)
+-- Dumping data for table essentialmode.mdt_users: ~2 rows (approximately)
 /*!40000 ALTER TABLE `mdt_users` DISABLE KEYS */;
+INSERT INTO `mdt_users` (`user_id`, `email`, `password`, `name`, `admin`, `steam`, `code`, `suspend`, `role`, `pass_reset`) VALUES
+	(59, 'admin@user.com', '$2y$10$cBcNHETyixD5awlTIzEGZu7Mb8pWMegjOX2G9g1AgXa6D6TvKYBQW', 'Admin', 1, '123456', '(NULL)', 0, '{"4":{"name":"civ","departments":[]},"5":{"name":"leo","departments":{"BCSO":["Patrol","TRAFFIC","K9","DETECTIVE","SANDY","DRUG","AIR","MOTOR","SWAT"],"LSPD":["Patrol","K9","PA","TRAFFIC","DETECTIVE","VINEWOOD","DRUG","AIR","MOTOR","SWAT"],"SAHP":["Patrol","K9","AIR","MOTOR","SWAT","CVE"],"LSFD":["MEDIC"]}},"6":{"name":"dispatch","departments":[]}}', NULL);
 /*!40000 ALTER TABLE `mdt_users` ENABLE KEYS */;
 
--- Dumping structure for table test.mdt_vehicles
+-- Dumping structure for table essentialmode.mdt_vehicles
 CREATE TABLE IF NOT EXISTS `mdt_vehicles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ownerID` int(11) DEFAULT '0',
-  `characterID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `model` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `plate` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `description` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `reg` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `insurance` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `flags` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `characterID` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `model` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `plate` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `description` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `reg` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `insurance` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `flags` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `save_data` longtext COLLATE utf8mb4_bin,
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Dumping data for table test.mdt_vehicles: ~0 rows (approximately)
+-- Dumping data for table essentialmode.mdt_vehicles: ~19 rows (approximately)
 /*!40000 ALTER TABLE `mdt_vehicles` DISABLE KEYS */;
+INSERT INTO `mdt_vehicles` (`id`, `ownerID`, `characterID`, `model`, `plate`, `description`, `reg`, `insurance`, `flags`, `save_data`) VALUES
+	(17, 59, '49', 'Rusty Rebel', '2FST4U4', 'White', 'Valid', 'Valid', 'None', NULL),
+	(18, 59, '49', 'Rusty Rebel', '41UIE708', 'White', 'Valid', 'Valid', 'None', NULL),
+	(19, 59, '49', 'Asea', '84OJW514', 'White', 'Valid', 'Valid', 'None', NULL),
+	(20, 59, '49', 'Asea', '83URN046', 'White', 'Valid', 'Valid', 'None', NULL),
+	(21, 59, '49', 'Asea', '84OPT566', 'White', 'Valid', 'Valid', 'None', NULL),
+	(22, 59, '49', 'Asea', '28YRB619', 'White', 'Valid', 'Valid', 'None', NULL),
+	(24, 59, '49', 'Rusty Rebel', '60GKO585', 'White', 'Expired', 'Valid', 'None', NULL),
+	(25, 59, '49', 'Rusty Rebel', '60TFB062', 'White', 'Valid', 'Valid', 'None', NULL),
+	(26, 59, '49', 'Rusty Rebel', '69EBC716', 'White', 'Valid', 'Valid', 'None', NULL),
+	(27, 59, '49', 'Rusty Rebel', '68ILT547', 'White', 'Valid', 'Valid', 'None', NULL),
+	(28, 59, '49', 'Rusty Rebel', '04KJD627', 'White', 'Valid', 'Valid', 'None', NULL),
+	(29, 59, '49', 'Rusty Rebel', '26KHF733', 'White', 'Valid', 'Valid', 'None', NULL),
+	(30, 59, '49', 'Rusty Rebel', '01YCG884', 'White', 'Valid', 'Valid', 'None', NULL),
+	(31, 59, '49', 'Asea', '26ZUL780', 'White', 'Valid', 'Valid', 'None', '{"extras":[10],"windowTint":-1,"custSecondaryColour":[],"mods":{"1":-1,"2":-1,"3":-1,"4":-1,"5":-1,"6":-1,"7":-1,"8":-1,"9":-1,"10":-1,"11":-1,"12":-1,"13":-1,"14":-1,"15":-1,"16":-1,"17":false,"18":false,"19":false,"20":false,"21":false,"22":false,"23":-1,"24":-1,"25":-1,"26":-1,"27":-1,"28":-1,"29":-1,"30":-1,"31":-1,"32":-1,"33":-1,"34":-1,"35":-1,"36":-1,"37":-1,"38":-1,"39":-1,"40":-1,"41":-1,"42":-1,"43":-1,"44":-1,"45":-1,"46":-1,"47":-1,"48":-1,"49":-1,"0":-1},"wheelType":5,"customTyres":false,"model":"-1809822327","primaryColour":29,"smokeColour":[255,255,255],"wheelColour":156,"secondaryColour":34,"neonColour":[255,0,255],"plateType":0,"mod1Colour":[6,-1,-1],"mod2Colour":[6,-1],"pearlColour":28,"neonToggles":[],"custPrimaryColour":[255,255,255],"burstableTyres":1,"livery":-1,"plateText":"26ZUL780"}'),
+	(32, 61, '50', 'Rebel', '82BWW391', 'White', 'Valid', 'Valid', 'None', '{"extras":[1,3],"windowTint":-1,"custSecondaryColour":[],"mods":{"1":-1,"2":-1,"3":-1,"4":-1,"5":-1,"6":-1,"7":-1,"8":-1,"9":-1,"10":-1,"11":-1,"12":-1,"13":-1,"14":-1,"15":-1,"16":-1,"17":false,"18":false,"19":false,"20":false,"21":false,"22":false,"23":-1,"24":-1,"25":-1,"26":-1,"27":-1,"28":-1,"29":-1,"30":-1,"31":-1,"32":-1,"33":-1,"34":-1,"35":-1,"36":-1,"37":-1,"38":-1,"39":-1,"40":-1,"41":-1,"42":-1,"43":-1,"44":-1,"45":-1,"46":-1,"47":-1,"48":-1,"49":-1,"0":-1},"wheelType":4,"customTyres":false,"livery":-1,"primaryColour":4,"smokeColour":[255,255,255],"custPrimaryColour":[255,255,255],"model":"-2045594037","neonColour":[255,0,255],"plateType":3,"mod1Colour":[0,0,0],"mod2Colour":[0,0],"pearlColour":111,"neonToggles":[],"plateText":"82BWW391","burstableTyres":1,"secondaryColour":0,"wheelColour":156}'),
+	(38, 59, '49', 'fgfd', 'dfgdfg', 'gdfgdf', 'Expired', 'Expired', 'dfgdf', NULL),
+	(40, 61, '55', 'Rebel', 'woop', 'White', 'Valid', 'Valid', 'None', '{"extras":[1,3],"windowTint":-1,"custSecondaryColour":[],"mods":{"1":-1,"2":-1,"3":-1,"4":-1,"5":-1,"6":-1,"7":-1,"8":-1,"9":-1,"10":-1,"11":-1,"12":-1,"13":-1,"14":-1,"15":-1,"16":-1,"17":false,"18":false,"19":false,"20":false,"21":false,"22":false,"23":-1,"24":-1,"25":-1,"26":-1,"27":-1,"28":-1,"29":-1,"30":-1,"31":-1,"32":-1,"33":-1,"34":-1,"35":-1,"36":-1,"37":-1,"38":-1,"39":-1,"40":-1,"41":-1,"42":-1,"43":-1,"44":-1,"45":-1,"46":-1,"47":-1,"48":-1,"49":-1,"0":-1},"wheelType":4,"customTyres":false,"livery":-1,"primaryColour":4,"smokeColour":[255,255,255],"custPrimaryColour":[255,255,255],"model":"-2045594037","neonColour":[255,0,255],"plateType":3,"mod1Colour":[0,0,0],"mod2Colour":[0,0],"pearlColour":111,"neonToggles":[],"plateText":"82BWW391","burstableTyres":1,"secondaryColour":0,"wheelColour":156}'),
+	(41, 61, '55', 'Rebel', '82BWW391', 'White', 'Valid', 'Valid', 'None', '{"extras":[1,3],"windowTint":-1,"custSecondaryColour":[],"mods":{"1":-1,"2":-1,"3":-1,"4":-1,"5":-1,"6":-1,"7":-1,"8":-1,"9":-1,"10":-1,"11":-1,"12":-1,"13":-1,"14":-1,"15":-1,"16":-1,"17":false,"18":false,"19":false,"20":false,"21":false,"22":false,"23":-1,"24":-1,"25":-1,"26":-1,"27":-1,"28":-1,"29":-1,"30":-1,"31":-1,"32":-1,"33":-1,"34":-1,"35":-1,"36":-1,"37":-1,"38":-1,"39":-1,"40":-1,"41":-1,"42":-1,"43":-1,"44":-1,"45":-1,"46":-1,"47":-1,"48":-1,"49":-1,"0":-1},"wheelType":4,"customTyres":false,"livery":-1,"primaryColour":4,"smokeColour":[255,255,255],"custPrimaryColour":[255,255,255],"model":"-2045594037","neonColour":[255,0,255],"plateType":3,"mod1Colour":[0,0,0],"mod2Colour":[0,0],"pearlColour":111,"neonToggles":[],"plateText":"82BWW391","burstableTyres":1,"secondaryColour":0,"wheelColour":156}'),
+	(42, 61, '55', 'Rebel', '82BWW391', 'White', 'Valid', 'Valid', 'None', '{"extras":[1,3],"windowTint":-1,"custSecondaryColour":[],"mods":{"1":-1,"2":-1,"3":-1,"4":-1,"5":-1,"6":-1,"7":-1,"8":-1,"9":-1,"10":-1,"11":-1,"12":-1,"13":-1,"14":-1,"15":-1,"16":-1,"17":false,"18":false,"19":false,"20":false,"21":false,"22":false,"23":-1,"24":-1,"25":-1,"26":-1,"27":-1,"28":-1,"29":-1,"30":-1,"31":-1,"32":-1,"33":-1,"34":-1,"35":-1,"36":-1,"37":-1,"38":-1,"39":-1,"40":-1,"41":-1,"42":-1,"43":-1,"44":-1,"45":-1,"46":-1,"47":-1,"48":-1,"49":-1,"0":-1},"wheelType":4,"customTyres":false,"livery":-1,"primaryColour":4,"smokeColour":[255,255,255],"custPrimaryColour":[255,255,255],"model":"-2045594037","neonColour":[255,0,255],"plateType":3,"mod1Colour":[0,0,0],"mod2Colour":[0,0],"pearlColour":111,"neonToggles":[],"plateText":"82BWW391","burstableTyres":1,"secondaryColour":0,"wheelColour":156}'),
+	(43, 61, '55', 'Rebel', '82BWW391', 'White', 'Valid', 'Valid', 'None', '{"extras":[1,3],"windowTint":-1,"custSecondaryColour":[],"mods":{"1":-1,"2":-1,"3":-1,"4":-1,"5":-1,"6":-1,"7":-1,"8":-1,"9":-1,"10":-1,"11":-1,"12":-1,"13":-1,"14":-1,"15":-1,"16":-1,"17":false,"18":false,"19":false,"20":false,"21":false,"22":false,"23":-1,"24":-1,"25":-1,"26":-1,"27":-1,"28":-1,"29":-1,"30":-1,"31":-1,"32":-1,"33":-1,"34":-1,"35":-1,"36":-1,"37":-1,"38":-1,"39":-1,"40":-1,"41":-1,"42":-1,"43":-1,"44":-1,"45":-1,"46":-1,"47":-1,"48":-1,"49":-1,"0":-1},"wheelType":4,"customTyres":false,"livery":-1,"primaryColour":4,"smokeColour":[255,255,255],"custPrimaryColour":[255,255,255],"model":"-2045594037","neonColour":[255,0,255],"plateType":3,"mod1Colour":[0,0,0],"mod2Colour":[0,0],"pearlColour":111,"neonToggles":[],"plateText":"82BWW391","burstableTyres":1,"secondaryColour":0,"wheelColour":156}');
 /*!40000 ALTER TABLE `mdt_vehicles` ENABLE KEYS */;
 
--- Dumping structure for table test.mdt_warnings
+-- Dumping structure for table essentialmode.mdt_warnings
 CREATE TABLE IF NOT EXISTS `mdt_warnings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `charaterId` int(11) DEFAULT NULL,
-  `first` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `last` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `first` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `last` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   `plateId` int(11) DEFAULT NULL,
-  `plate` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `description` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `infraction` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
-  `location` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `date` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `officer` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `plate` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `description` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `infraction` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  `location` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `date` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `officer` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table test.mdt_warnings: ~0 rows (approximately)
+-- Dumping data for table essentialmode.mdt_warnings: ~2 rows (approximately)
 /*!40000 ALTER TABLE `mdt_warnings` DISABLE KEYS */;
+INSERT INTO `mdt_warnings` (`id`, `charaterId`, `first`, `last`, `plateId`, `plate`, `description`, `infraction`, `location`, `date`, `officer`) VALUES
+	(14, 49, 'Bruton', 'Gaster', 0, '2FST4U4', 'Rusty Rebel - White', '["Stolen Weapon"]', 'Joshua Road', '08-24-2019 13:40:18', '2B-12 [SAHP]'),
+	(15, 49, 'Bruton', 'Gaster', 0, '2FST4U4', 'Rusty Rebel - White', '["Battery"]', 'Joshua Road', '08-24-2019 13:42:12', '2B-12 [SAHP]');
 /*!40000 ALTER TABLE `mdt_warnings` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

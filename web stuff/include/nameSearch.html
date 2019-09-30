@@ -1,0 +1,44 @@
+    <h1>Name Search</h1>
+    <div id="nameInput">
+        <div id="inputDiv">
+            <label>First Name</label>
+            <input type="text" id="first" placeholder="First">
+        </div>
+        <div id="inputDiv">
+            <label>Last Name</label>
+            <input type="text" id="last" placeholder="Last">
+        </div>
+        <br>
+        <button id="search">Search</button>
+    </div>
+    <br>
+    <alert>No Results</alert>
+    
+    <div id="searchResults">
+    <h2 id="name"></h2>
+    <h2 id="dob"></h2>
+    <h2 id="gender"></h2>
+    <h2 id="address"></h2>
+    <h1>Licenses</h1>
+    
+    <table class="more" style="margin-left: 40px; width: 30%;" id="licTable">
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Status</th>
+        </tr>
+    </table>
+    
+    <h1>Vehicles</h1>
+    <table id="vehicles" class="more" style="margin-left: 40px; width: 30%;"></table>
+    
+    <h1>Records</h1>
+    <select id="nameReportSelect" onchange="nameReport(this.value)">
+        <option value="tickets">Tickets</option>
+        <option value="warnings">Warnings</option>
+        <option value="arrests">Arrests</option>
+    </select>
+    <table id="nameReportTable">
+    </table>
+    </div>
+    <script src="../include/nameSearch.js"></script>

@@ -1,0 +1,39 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://www.w3schools.com/lib/w3.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
+<style>
+.page {
+	display:none;
+	position: fixed;
+	margin:0;
+	top: 0;
+	left:0;
+	}
+</style>
+<script>
+function show(name) {
+$(name).show(0);
+}
+</script>
+</head>
+<body>
+<div id='pages'>
+<div id='character' class='page' w3-include-html="character/index.html"></div>
+<div id='showID' class='page' w3-include-html="id/index.html"></div>
+</div>
+
+<div id='items'>
+<img id='id' src='id.png'>
+</div>
+
+<script>
+w3.includeHTML();
+</script>
+
+<script src="settings.js" type="text/javascript"></script>
+<script src="script.js" type="text/javascript"></script>
+<script src="character/script.js" type="text/javascript"></script>
+</body>
+</html>

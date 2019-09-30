@@ -1,0 +1,31 @@
+    <h1>Plate Search</h1>
+    <div id="plateInput">
+        <div id="inputDiv">
+            <label>Plate</label>
+            <input type="text" id="plate" placeholder="Plate">
+        </div>
+        <br>
+        <button id="search">Search</button>
+    </div>
+    <br>
+    <alert>No Results</alert>
+
+    <div id="searchResults">
+        <h2 id="plate"></h2>
+        <h2 id="model"></h2>
+        <h2 id="owner"></h2>
+        <h2 id="description"></h2>
+        <h2 id="reg"></h2>
+        <h2 id="insurance"></h2>
+        <h2 id="flags"></h2>
+    
+    <h1>Records</h1>
+    <select id="plateReportSelect" onchange="plateReport(this.value)">
+        <option value="tickets">Tickets</option>
+        <option value="warnings">Warnings</option>
+        <option value="arrests">Arrests</option>
+    </select>
+    <table id="plateReportTable">
+    </table>
+    </div>  
+    <script src="../include/plateSearch.js"></script>
