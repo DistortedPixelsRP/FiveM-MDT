@@ -3,7 +3,7 @@
 <h3 align="center">By Benny F</h3>
 </p>
 
-I have decided that the MDT is ready to be released! Please follow the instructions below.
+<h3>PLEASE READ DISCORD ANNOUNCEMENTS FOR UPDATES ON PROJECT STATUS</H3>
 
 
 ## Features
